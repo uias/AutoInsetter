@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Sources/AutoInset.xcodeproj">
+      location = "group:Sources/AutoInsetter.xcodeproj">
    </FileRef>
 </Workspace>

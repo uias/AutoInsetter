@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "460911A6200E5291008DC38E"
-               BuildableName = "AutoInset.framework"
-               BlueprintName = "AutoInset"
-               ReferencedContainer = "container:AutoInset.xcodeproj">
+               BuildableName = "AutoInsetter.framework"
+               BlueprintName = "AutoInsetter"
+               ReferencedContainer = "container:AutoInsetter.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -27,17 +27,16 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       language = ""
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      codeCoverageEnabled = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "460911AF200E5291008DC38E"
-               BuildableName = "AutoInsetTests.xctest"
-               BlueprintName = "AutoInsetTests"
-               ReferencedContainer = "container:AutoInset.xcodeproj">
+               BuildableName = "AutoInsetterTests.xctest"
+               BlueprintName = "AutoInsetterTests"
+               ReferencedContainer = "container:AutoInsetter.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -45,9 +44,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "460911A6200E5291008DC38E"
-            BuildableName = "AutoInset.framework"
-            BlueprintName = "AutoInset"
-            ReferencedContainer = "container:AutoInset.xcodeproj">
+            BuildableName = "AutoInsetter.framework"
+            BlueprintName = "AutoInsetter"
+            ReferencedContainer = "container:AutoInsetter.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -68,9 +67,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "460911A6200E5291008DC38E"
-            BuildableName = "AutoInset.framework"
-            BlueprintName = "AutoInset"
-            ReferencedContainer = "container:AutoInset.xcodeproj">
+            BuildableName = "AutoInsetter.framework"
+            BlueprintName = "AutoInsetter"
+            ReferencedContainer = "container:AutoInsetter.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -86,9 +85,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "460911A6200E5291008DC38E"
-            BuildableName = "AutoInset.framework"
-            BlueprintName = "AutoInset"
-            ReferencedContainer = "container:AutoInset.xcodeproj">
+            BuildableName = "AutoInsetter.framework"
+            BlueprintName = "AutoInsetter"
+            ReferencedContainer = "container:AutoInsetter.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

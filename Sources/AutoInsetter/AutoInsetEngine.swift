@@ -6,7 +6,7 @@
 //  Copyright © 2018 UI At Six. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// Engine that provides Auto Insetting to UIViewControllers.
 public final class AutoInsetEngine {

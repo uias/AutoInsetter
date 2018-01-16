@@ -6,7 +6,7 @@
 //  Copyright © 2018 UI At Six. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// Specification for Auto Insetting values.
 public protocol AutoInsetSpec {
