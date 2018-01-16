@@ -17,6 +17,10 @@ public final class AutoInsetEngine {
     /// Whether auto-insetting is enabled.
     public var isEnabled: Bool = true
     
+    // MARK: Init
+    
+    public init() {}
+    
     // MARK: Insetting
     
     /// Inset a child view controller by a set of required insets.
