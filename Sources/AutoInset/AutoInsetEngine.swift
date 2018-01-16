@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Engine that provides Auto Insetting to UIViewControllers.
 public final class AutoInsetEngine {
     
     // MARK: Properties
@@ -27,19 +28,19 @@ public final class AutoInsetEngine {
     ///
     /// - Parameters:
     ///   - childViewController: Child view controller to inset.
-    ///   - requiredInsets: The required insets.
+    ///   - requiredInsetSpec: The required inset specification.
     public func inset(_ childViewController: UIViewController?,
-               requiredInsets: RequiredAutoInsets) {
+                      requiredInsetSpec: AutoInsetSpec) {
         guard let childViewController = childViewController else {
             return
         }
         guard isEnabled else { // reset safe areas / contentInset
-            reset(childViewController, from: requiredInsets)
+            reset(childViewController, from: requiredInsetSpec)
             return
         }
         
         if #available(iOS 11, *) {
-            childViewController.additionalSafeAreaInsets = requiredInsets.additionalInsets
+            childViewController.additionalSafeAreaInsets = requiredInsetSpec.additionalRequiredInsets
         }
         
         childViewController.forEachEmbeddedScrollView { (scrollView) in
@@ -49,7 +50,7 @@ public final class AutoInsetEngine {
             }
             
             let requiredContentInset = calculateActualRequiredContentInset(for: scrollView,
-                                                                           from: requiredInsets)
+                                                                           from: requiredInsetSpec)
             
             // ensure scroll view is either at top or full height before doing automatic insetting
             ensureLayoutIsValid(for: childViewController,
@@ -77,7 +78,7 @@ public final class AutoInsetEngine {
     }
     
     private func reset(_ childViewController: UIViewController,
-                       from requiredInsets: RequiredAutoInsets) {
+                       from requiredInsetSpec: AutoInsetSpec) {
         
         if #available(iOS 11, *) {
             childViewController.additionalSafeAreaInsets = .zero
@@ -116,8 +117,8 @@ private extension AutoInsetEngine {
     ///   - requiredInsets: Required TabmanBar insets.
     /// - Returns: Actual contentInset values to use.
     private func calculateActualRequiredContentInset(for scrollView: UIScrollView,
-                                                     from requiredInsets: RequiredAutoInsets) -> UIEdgeInsets {
-        var requiredContentInset = requiredInsets.totalInsets
+                                                     from requiredInsetSpec: AutoInsetSpec) -> UIEdgeInsets {
+        var requiredContentInset = requiredInsetSpec.totalRequiredInsets
         let currentContentInset = self.viewControllerInsets[scrollView.hash] ?? .zero
         
         self.viewControllerInsets[scrollView.hash] = requiredContentInset
