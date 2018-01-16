@@ -118,7 +118,7 @@ private extension AutoInsetEngine {
     /// - Returns: Actual contentInset values to use.
     private func calculateActualRequiredContentInset(for scrollView: UIScrollView,
                                                      from requiredInsetSpec: AutoInsetSpec) -> UIEdgeInsets {
-        var requiredContentInset = requiredInsetSpec.totalRequiredInsets
+        var requiredContentInset = requiredInsetSpec.allRequiredInsets
         let currentContentInset = self.viewControllerInsets[scrollView.hash] ?? .zero
         
         self.viewControllerInsets[scrollView.hash] = requiredContentInset

@@ -14,6 +14,6 @@ public protocol AutoInsetSpec {
     /// The insets that are required IN addition to UIKit components / safe area.
     var additionalRequiredInsets: UIEdgeInsets { get }
     
-    /// The total insets that are required INCLUDING UIKit components / safe area.
-    var totalRequiredInsets: UIEdgeInsets { get }
+    /// All insets that are required INCLUDING UIKit components / safe area.
+    var allRequiredInsets: UIEdgeInsets { get }
 }
