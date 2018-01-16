@@ -19,6 +19,11 @@ class AutoInsetEngine {
     
     // MARK: Insetting
     
+    /// Inset a child view controller by a set of required insets.
+    ///
+    /// - Parameters:
+    ///   - childViewController: Child view controller to inset.
+    ///   - requiredInsets: The required insets.
     func inset(_ childViewController: UIViewController?,
                requiredInsets: RequiredAutoInsets) {
         guard let childViewController = childViewController else {
@@ -83,8 +88,10 @@ class AutoInsetEngine {
             scrollView.scrollIndicatorInsets = .zero
         }
     }
-    
-    // MARK: Utility
+}
+
+// MARK: - Utilities
+private extension AutoInsetEngine {
     
     /// Check whether a view controller is not an 'embedded' view controller type (i.e. UITableViewController)
     ///
@@ -147,46 +154,6 @@ class AutoInsetEngine {
             
         } else {
             success()
-        }
-    }
-}
-
-private extension UIViewController {
-    
-    var embeddedScrollViews: [UIScrollView?] {
-        if let tableViewController = self as? UITableViewController { // UITableViewController
-            return [tableViewController.tableView]
-        } else if let collectionViewController = self as? UICollectionViewController { // UICollectionViewController
-            return [collectionViewController.collectionView]
-        } else { // standard subview filtering
-            return scrollViews(in: self.view)
-        }
-    }
-    
-    func scrollViews(in view: UIView) -> [UIScrollView] {
-        var scrollViews = [UIScrollView]()
-        if let scrollView = view as? UIScrollView {
-            scrollViews.append(scrollView)
-            return scrollViews
-        }
-        
-        for subview in view.subviews {
-            if let scrollView = subview as? UIScrollView {
-                scrollViews.append(scrollView)
-                return scrollViews
-            }
-            
-            scrollViews.append(contentsOf: self.scrollViews(in: subview))
-        }
-        return scrollViews
-    }
-    
-    func forEachEmbeddedScrollView(_ action: (UIScrollView) -> Void) {
-        for scrollView in self.embeddedScrollViews {
-            guard let scrollView = scrollView else { continue }
-            guard !scrollView.isBeingInteracted else { continue }
-            
-            action(scrollView)
         }
     }
 }

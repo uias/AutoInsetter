@@ -1,0 +1,49 @@
+//
+//  UIViewController+ScrollViewDetection.swift
+//  AutoInset
+//
+//  Created by Merrick Sapsford on 16/01/2018.
+//  Copyright © 2018 UI At Six. All rights reserved.
+//
+
+import UIKit
+
+internal extension UIViewController {
+    
+    var embeddedScrollViews: [UIScrollView?] {
+        if let tableViewController = self as? UITableViewController { // UITableViewController
+            return [tableViewController.tableView]
+        } else if let collectionViewController = self as? UICollectionViewController { // UICollectionViewController
+            return [collectionViewController.collectionView]
+        } else { // standard subview filtering
+            return scrollViews(in: self.view)
+        }
+    }
+    
+    func scrollViews(in view: UIView) -> [UIScrollView] {
+        var scrollViews = [UIScrollView]()
+        if let scrollView = view as? UIScrollView {
+            scrollViews.append(scrollView)
+            return scrollViews
+        }
+        
+        for subview in view.subviews {
+            if let scrollView = subview as? UIScrollView {
+                scrollViews.append(scrollView)
+                return scrollViews
+            }
+            
+            scrollViews.append(contentsOf: self.scrollViews(in: subview))
+        }
+        return scrollViews
+    }
+    
+    func forEachEmbeddedScrollView(_ action: (UIScrollView) -> Void) {
+        for scrollView in self.embeddedScrollViews {
+            guard let scrollView = scrollView else { continue }
+            guard !scrollView.isBeingInteracted else { continue }
+            
+            action(scrollView)
+        }
+    }
+}
