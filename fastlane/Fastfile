@@ -11,4 +11,8 @@ platform :ios do
     # pod_lib_lint(verbose: true)
   end
 
+  desc "Deploy a new version"
+  lane :deploy do
+  end
+
 end
