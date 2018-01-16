@@ -1,0 +1,14 @@
+update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  
+  desc "Run unit tests and check library"
+  lane :test do
+    bootstrap
+    scan(workspace: "AutoInset.xcworkspace", scheme: "AutoInset", clean: true)
+    # pod_lib_lint(verbose: true)
+  end
+
+end
