@@ -8,14 +8,14 @@
 
 import Foundation
 
-class AutoInsetEngine {
+public final class AutoInsetEngine {
     
     // MARK: Properties
     
     private var viewControllerInsets: [Int: UIEdgeInsets] = [:]
     
     /// Whether auto-insetting is enabled.
-    var isEnabled: Bool = true
+    public var isEnabled: Bool = true
     
     // MARK: Insetting
     
@@ -24,7 +24,7 @@ class AutoInsetEngine {
     /// - Parameters:
     ///   - childViewController: Child view controller to inset.
     ///   - requiredInsets: The required insets.
-    func inset(_ childViewController: UIViewController?,
+    public func inset(_ childViewController: UIViewController?,
                requiredInsets: RequiredAutoInsets) {
         guard let childViewController = childViewController else {
             return
