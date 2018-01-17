@@ -8,11 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		460911B1200E5291008DC38E /* AutoInsetter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460911A7200E5291008DC38E /* AutoInsetter.framework */; };
-		4699614A200EA4B700C1D9CD /* AutoInsetEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46996143200EA4B700C1D9CD /* AutoInsetEngine.swift */; };
+		4699614A200EA4B700C1D9CD /* AutoInsetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46996143200EA4B700C1D9CD /* AutoInsetter.swift */; };
 		4699614B200EA4B700C1D9CD /* UIScrollView+Interaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46996145200EA4B700C1D9CD /* UIScrollView+Interaction.swift */; };
 		4699614C200EA4B700C1D9CD /* UIViewController+ScrollViewDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46996146200EA4B700C1D9CD /* UIViewController+ScrollViewDetection.swift */; };
 		4699614D200EA4B700C1D9CD /* AutoInset.h in Headers */ = {isa = PBXBuildFile; fileRef = 46996147200EA4B700C1D9CD /* AutoInset.h */; };
-		4699614E200EA4B700C1D9CD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 46996148200EA4B700C1D9CD /* Info.plist */; };
 		4699614F200EA4B700C1D9CD /* AutoInsetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46996149200EA4B700C1D9CD /* AutoInsetSpec.swift */; };
 		46996153200EA4C200C1D9CD /* AutoInsetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46996151200EA4C200C1D9CD /* AutoInsetTests.swift */; };
 /* End PBXBuildFile section */
@@ -30,7 +29,7 @@
 /* Begin PBXFileReference section */
 		460911A7200E5291008DC38E /* AutoInsetter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AutoInsetter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		460911B0200E5291008DC38E /* AutoInsetterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoInsetterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		46996143200EA4B700C1D9CD /* AutoInsetEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoInsetEngine.swift; sourceTree = "<group>"; };
+		46996143200EA4B700C1D9CD /* AutoInsetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoInsetter.swift; sourceTree = "<group>"; };
 		46996145200EA4B700C1D9CD /* UIScrollView+Interaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Interaction.swift"; sourceTree = "<group>"; };
 		46996146200EA4B700C1D9CD /* UIViewController+ScrollViewDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ScrollViewDetection.swift"; sourceTree = "<group>"; };
 		46996147200EA4B700C1D9CD /* AutoInset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoInset.h; sourceTree = "<group>"; };
@@ -81,7 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				46996147200EA4B700C1D9CD /* AutoInset.h */,
-				46996143200EA4B700C1D9CD /* AutoInsetEngine.swift */,
+				46996143200EA4B700C1D9CD /* AutoInsetter.swift */,
 				46996149200EA4B700C1D9CD /* AutoInsetSpec.swift */,
 				46996144200EA4B700C1D9CD /* Utilities */,
 				46996148200EA4B700C1D9CD /* Info.plist */,
@@ -201,7 +200,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4699614E200EA4B700C1D9CD /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +219,7 @@
 			files = (
 				4699614B200EA4B700C1D9CD /* UIScrollView+Interaction.swift in Sources */,
 				4699614F200EA4B700C1D9CD /* AutoInsetSpec.swift in Sources */,
-				4699614A200EA4B700C1D9CD /* AutoInsetEngine.swift in Sources */,
+				4699614A200EA4B700C1D9CD /* AutoInsetter.swift in Sources */,
 				4699614C200EA4B700C1D9CD /* UIViewController+ScrollViewDetection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

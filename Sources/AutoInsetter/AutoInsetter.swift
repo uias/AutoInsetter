@@ -1,5 +1,5 @@
 //
-//  AutoInsetEngine.swift
+//  AutoInsetter.swift
 //  AutoInset
 //
 //  Created by Merrick Sapsford on 16/01/2018.
@@ -9,7 +9,7 @@
 import UIKit
 
 /// Engine that provides Auto Insetting to UIViewControllers.
-public final class AutoInsetEngine {
+public final class AutoInsetter {
     
     // MARK: Properties
     
@@ -96,7 +96,7 @@ public final class AutoInsetEngine {
 }
 
 // MARK: - Utilities
-private extension AutoInsetEngine {
+private extension AutoInsetter {
     
     /// Check whether a view controller is not an 'embedded' view controller type (i.e. UITableViewController)
     ///
