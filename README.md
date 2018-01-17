@@ -26,7 +26,7 @@
 
 ## ⭐️ Features
 - [x] Easy to implement custom view controller subview insetting.
-- [x] Enhanced support for latest iOS 11 API's; including safe areas.
+- [x] Enhanced support for latest iOS 11 API's - including safe areas.
 
 ## 📋 Requirements
 AutoInsetter requires iOS 9 and Swift 4.
