@@ -57,8 +57,6 @@ github "uias/AutoInsetter" ~> 1.0
 
 ## 🚀 Usage
 
-AutoInsetter provides an API that you can call when required that will automatically inset content in view controller subviews to required inset values. It requires the following simple steps:
-
 ### 1) Provide a Spec
 
 An `AutoInsetSpec` provides the values that are required to inset the subviews, consisting of:
@@ -96,7 +94,7 @@ class CustomToolbarViewController: UIViewController {}
 }
 ```
 
-*Recommendation: The `autoInsetter` wants to live at the same level as the views that require the additional insets (so in this case the custom toolbar).*
+***Recommendation**: The `autoInsetter` wants to live at the same level as the views that require the additional insets (so in this case the custom toolbar).*
 
 When everything has laid out and we will have the correct specification:
 
