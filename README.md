@@ -23,3 +23,48 @@
         <img src="https://img.shields.io/github/release/uias/AutoInsetter.svg" />
     </a>
 </p>
+
+## ⭐️ Features
+- [x] Super easy to implement page view controller with indicator bar.
+
+## 📋 Requirements
+AutoInsetter requires iOS 9 and Swift 4.
+
+## 📲 Installation
+### CocoaPods
+Au is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
+
+```ruby
+pod 'AutoInsetter', '~> 1.0'
+```
+
+And run `pod install`.
+
+### Carthage
+AutoInsetter is also available through [Carthage](https://github.com/Carthage/Carthage). Simply install carthage with [Homebrew](http://brew.sh/) using the following command:
+
+```bash
+$ brew update
+$ brew install carthage
+```
+
+Add AutoInsetter to your `Cartfile`:
+
+```ogdl
+github "uias/AutoInsetter" ~> 1.0
+```
+
+## 🚀 Usage
+
+## ⚠️ Troubleshooting
+If you are encountering issues with AutoInsetter, please feel free to raise an [issue](https://github.com/uias/AutoInsetter/issues/new).
+
+## 👨🏻‍💻 About
+- Created by [Merrick Sapsford](https://github.com/msaps) ([@MerrickSapsford](https://twitter.com/MerrickSapsford))
+- Contributed to by a growing [list of others](https://github.com/uias/AutoInsetter/graphs/contributors).
+
+## ❤️ Contributing
+Bug reports and pull requests are welcome on GitHub at [https://github.com/uias/AutoInsetter](https://github.com/uias/AutoInsetter).
+
+## 👮🏻‍♂️ License
+The library is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
