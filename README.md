@@ -25,14 +25,15 @@
 </p>
 
 ## ⭐️ Features
-- [x] Super easy to implement page view controller with indicator bar.
+- [x] Easy to implement custom view controller subview insetting.
+- [x] Enhanced support for latest iOS 11 API's; including safe areas.
 
 ## 📋 Requirements
 AutoInsetter requires iOS 9 and Swift 4.
 
 ## 📲 Installation
 ### CocoaPods
-Au is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
+AutoInsetter is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'AutoInsetter', '~> 1.0'
@@ -55,6 +56,8 @@ github "uias/AutoInsetter" ~> 1.0
 ```
 
 ## 🚀 Usage
+
+TODO
 
 ## ⚠️ Troubleshooting
 If you are encountering issues with AutoInsetter, please feel free to raise an [issue](https://github.com/uias/AutoInsetter/issues/new).
