@@ -31,11 +31,7 @@ public final class AutoInsetter {
     ///   - requiredInsetSpec: The required inset specification.
     public func inset(_ childViewController: UIViewController?,
                       requiredInsetSpec: AutoInsetSpec) {
-        guard let childViewController = childViewController else {
-            return
-        }
-        guard isEnabled else { // reset safe areas / contentInset
-            reset(childViewController, from: requiredInsetSpec)
+        guard let childViewController = childViewController, isEnabled else {
             return
         }
         
