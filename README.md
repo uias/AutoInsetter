@@ -23,3 +23,11 @@
         <img src="https://img.shields.io/github/release/uias/AutoInsetter.svg" />
     </a>
 </p>
+
+## 💡 About
+
+AutoInsetter is an integral part of both **[Tabman](https://github.com/uias/Tabman)** and **[Compressor](https://github.com/uias/Compressor)** and is used to provide custom view controller auto-insetting behaviour.
+
+## ⚠️ Issues
+
+For bug reports and other issues please raise it in the appropriate component repo as usual; either **[Tabman](https://github.com/uias/Tabman)** or **[Compressor](https://github.com/uias/Compressor)**.
