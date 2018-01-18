@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		460911B1200E5291008DC38E /* AutoInsetter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460911A7200E5291008DC38E /* AutoInsetter.framework */; };
+		464CFD8820111C5000D7DEDA /* EmbeddedScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464CFD8720111C5000D7DEDA /* EmbeddedScrollViewTests.swift */; };
 		4699614A200EA4B700C1D9CD /* AutoInsetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46996143200EA4B700C1D9CD /* AutoInsetter.swift */; };
 		4699614B200EA4B700C1D9CD /* UIScrollView+Interaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46996145200EA4B700C1D9CD /* UIScrollView+Interaction.swift */; };
 		4699614C200EA4B700C1D9CD /* UIViewController+ScrollViewDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46996146200EA4B700C1D9CD /* UIViewController+ScrollViewDetection.swift */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		460911A7200E5291008DC38E /* AutoInsetter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AutoInsetter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		460911B0200E5291008DC38E /* AutoInsetterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoInsetterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		464CFD8720111C5000D7DEDA /* EmbeddedScrollViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedScrollViewTests.swift; sourceTree = "<group>"; };
 		46996143200EA4B700C1D9CD /* AutoInsetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoInsetter.swift; sourceTree = "<group>"; };
 		46996145200EA4B700C1D9CD /* UIScrollView+Interaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Interaction.swift"; sourceTree = "<group>"; };
 		46996146200EA4B700C1D9CD /* UIViewController+ScrollViewDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ScrollViewDetection.swift"; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				46996151200EA4C200C1D9CD /* AutoInsetTests.swift */,
+				464CFD8720111C5000D7DEDA /* EmbeddedScrollViewTests.swift */,
 				46996152200EA4C200C1D9CD /* Info.plist */,
 			);
 			path = AutoInsetterTests;
@@ -229,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				46996153200EA4C200C1D9CD /* AutoInsetTests.swift in Sources */,
+				464CFD8820111C5000D7DEDA /* EmbeddedScrollViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

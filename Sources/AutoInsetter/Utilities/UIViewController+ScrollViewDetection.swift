@@ -22,15 +22,10 @@ internal extension UIViewController {
     
     func scrollViews(in view: UIView) -> [UIScrollView] {
         var scrollViews = [UIScrollView]()
-        if let scrollView = view as? UIScrollView {
-            scrollViews.append(scrollView)
-            return scrollViews
-        }
         
         for subview in view.subviews {
             if let scrollView = subview as? UIScrollView {
                 scrollViews.append(scrollView)
-                return scrollViews
             }
             
             scrollViews.append(contentsOf: self.scrollViews(in: subview))
