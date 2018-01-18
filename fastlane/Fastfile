@@ -6,9 +6,8 @@ platform :ios do
   
   desc "Run unit tests and check library"
   lane :test do
-    bootstrap
     scan(workspace: "AutoInsetter.xcworkspace", scheme: "AutoInsetter", clean: true)
-    # pod_lib_lint(verbose: true)
+    pod_lib_lint(verbose: true)
   end
 
   desc "Deploy a new version"
