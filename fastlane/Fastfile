@@ -12,6 +12,23 @@ platform :ios do
 
   desc "Deploy a new version"
   lane :deploy do
+
+    podspec = "AutoInsetter.podspec"
+    version = version_get_podspec(path: podspec)
+
+    # Push new Github release
+    github_release = set_github_release(
+      repository_name: "uias/AutoInsetter",
+      api_token: ENV["GITHUB_TOKEN"],
+      name: version,
+      tag_name: version,
+      description: "#{version} release.",
+      commitish: "master"
+    )
+
+    # Push spec
+    pod_push(allow_warnings: true, verbose: true)
+
   end
 
 end
