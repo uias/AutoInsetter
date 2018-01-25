@@ -27,7 +27,7 @@ platform :ios do
     )
 
     # Push spec
-    pod_push(allow_warnings: true, verbose: true)
+    pod_push(allow_warnings: true)
 
   end
 
