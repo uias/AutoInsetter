@@ -1,7 +1,7 @@
 language: objective-c
 osx_image: xcode9.1
 before_install:
-- pod repo update
+- bundle exec pod repo update
 script:
 - .travis/build.sh
 after_success:
