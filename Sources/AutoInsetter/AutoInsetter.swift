@@ -134,9 +134,7 @@ private extension AutoInsetter {
                                                 bottom: relativeBottomInset,
                                                 right: 0.0)
         currentScrollViewInsets[scrollView] = proposedContentInset
-        
-        print("\(scrollView.frame.minY): \(proposedContentInset)")
-        
+                
         var actualRequiredContentInset = proposedContentInset
         
         // Take into account any custom insets for top / bottom
