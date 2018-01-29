@@ -13,8 +13,8 @@ public final class AutoInsetter {
     
     // MARK: Properties
     
-    private var viewControllerInsets: [Int: UIEdgeInsets] = [:]
-    
+    private var appliedViewInsets: [UIView: UIEdgeInsets] = [:]
+
     /// Whether auto-insetting is enabled.
     public var isEnabled: Bool = true
     
@@ -45,31 +45,29 @@ public final class AutoInsetter {
                 scrollView.contentInsetAdjustmentBehavior = .never
             }
             
-            let requiredContentInset = calculateActualRequiredContentInset(for: scrollView,
-                                                                           from: requiredInsetSpec)
+            guard isNotEmbeddedViewController(childViewController) else {
+                return
+            }
             
-            // ensure scroll view is either at top or full height before doing automatic insetting
-            ensureLayoutIsValid(for: childViewController,
-                                with: scrollView,
-                                requiredContentInset: requiredContentInset,
-                                success:
-                {
-                    // dont update if we dont need to
-                    if scrollView.contentInset != requiredContentInset {
-                        
-                        let isTopInsetChanged = requiredContentInset.top != scrollView.contentInset.top
-                        
-                        scrollView.contentInset = requiredContentInset
-                        scrollView.scrollIndicatorInsets = requiredContentInset
-                        
-                        // only update contentOffset if the top contentInset has updated.
-                        if isTopInsetChanged {
-                            var contentOffset = scrollView.contentOffset
-                            contentOffset.y = -requiredContentInset.top
-                            scrollView.contentOffset = contentOffset
-                        }
-                    }
-            })
+            let requiredContentInset = calculateActualRequiredContentInset(for: scrollView,
+                                                                           from: requiredInsetSpec,
+                                                                           in: childViewController)
+            
+            // dont update if we dont need to
+            if scrollView.contentInset != requiredContentInset {
+                
+                let isTopInsetChanged = requiredContentInset.top != scrollView.contentInset.top
+                
+                scrollView.contentInset = requiredContentInset
+                scrollView.scrollIndicatorInsets = requiredContentInset
+                
+                // only update contentOffset if the top contentInset has updated.
+                if isTopInsetChanged {
+                    var contentOffset = scrollView.contentOffset
+                    contentOffset.y = -requiredContentInset.top
+                    scrollView.contentOffset = contentOffset
+                }
+            }
         }
     }
     
@@ -113,48 +111,27 @@ private extension AutoInsetter {
     ///   - requiredInsets: Required TabmanBar insets.
     /// - Returns: Actual contentInset values to use.
     private func calculateActualRequiredContentInset(for scrollView: UIScrollView,
-                                                     from requiredInsetSpec: AutoInsetSpec) -> UIEdgeInsets {
-        var requiredContentInset = requiredInsetSpec.allRequiredInsets
-        let currentContentInset = self.viewControllerInsets[scrollView.hash] ?? .zero
-        
-        self.viewControllerInsets[scrollView.hash] = requiredContentInset
-        
-        // take account of custom top / bottom insets
-        let topInset = scrollView.contentInset.top - currentContentInset.top
-        if topInset != 0.0 {
-            requiredContentInset.top += topInset
-        }
-        let bottomInset = scrollView.contentInset.bottom - currentContentInset.bottom
-        if bottomInset != 0.0 {
-            requiredContentInset.bottom += bottomInset
+                                                     from requiredInsetSpec: AutoInsetSpec,
+                                                     in viewController: UIViewController) -> UIEdgeInsets {
+        guard let superview = scrollView.superview else {
+            fatalError("Attempting to inset a scroll view that has no superview")
         }
         
-        requiredContentInset.left = currentContentInset.left
-        requiredContentInset.right = currentContentInset.right
+        let requiredContentInset = requiredInsetSpec.allRequiredInsets
         
-        return requiredContentInset
-    }
-    
-    private func ensureLayoutIsValid(for childViewController: UIViewController,
-                                     with scrollView: UIScrollView,
-                                     requiredContentInset: UIEdgeInsets,
-                                     success: () -> Void) {
-        if isNotEmbeddedViewController(childViewController) {
-            
-            var isValidLayout = true
-            if requiredContentInset.top > 0.0 {
-                isValidLayout = scrollView.frame.minY == 0.0
-            }
-            if requiredContentInset.bottom > 0.0 {
-                // TODO - Figure out a way to check whether bottom of scroll view goes underneath bar.
-            }
-            
-            if isValidLayout {
-                success()
-            }
-            
-        } else {
-            success()
-        }
+        // Calculate top / bottom insets relative to view position in child vc.
+        let relativeFrame = viewController.view.convert(scrollView.frame, from: superview)
+        let relativeTopInset = max(requiredContentInset.top - relativeFrame.minY, 0.0)
+        let bottomInsetMinY = viewController.view.bounds.height - requiredContentInset.bottom
+        let relativeBottomInset = fabs(min(bottomInsetMinY - relativeFrame.maxY, 0.0))
+        
+        let proposedContentInset = UIEdgeInsets(top: relativeTopInset,
+                                                left: 0.0,
+                                                bottom: relativeBottomInset,
+                                                right: 0.0)
+
+        // TODO - Take into account any custom insets
+        
+        return proposedContentInset
     }
 }
