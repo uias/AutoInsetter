@@ -45,10 +45,6 @@ public final class AutoInsetter {
                 scrollView.contentInsetAdjustmentBehavior = .never
             }
             
-            guard isNotEmbeddedViewController(childViewController) else {
-                return
-            }
-            
             let requiredContentInset = calculateActualRequiredContentInset(for: scrollView,
                                                                            from: requiredInsetSpec,
                                                                            in: childViewController)
@@ -91,18 +87,6 @@ public final class AutoInsetter {
 
 // MARK: - Utilities
 private extension AutoInsetter {
-    
-    /// Check whether a view controller is not an 'embedded' view controller type (i.e. UITableViewController)
-    ///
-    /// - Parameters:
-    ///   - viewController: The view controller.
-    ///   - success: Execution if view controller is not embedded type.
-    func isNotEmbeddedViewController(_ viewController: UIViewController) -> Bool {
-        if !(viewController is UITableViewController) && !(viewController is UICollectionViewController) {
-            return true
-        }
-        return false
-    }
     
     /// Calculate the actual inset values to use for a scroll view.
     ///
