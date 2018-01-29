@@ -118,6 +118,8 @@ private extension AutoInsetter {
             fatalError("Attempting to inset a scroll view that has no superview")
         }
         
+        viewController.view.layoutIfNeeded()
+        
         let requiredContentInset = requiredInsetSpec.allRequiredInsets
         let previousContentInset = currentScrollViewInsets[scrollView] ?? .zero
         
@@ -132,6 +134,8 @@ private extension AutoInsetter {
                                                 bottom: relativeBottomInset,
                                                 right: 0.0)
         currentScrollViewInsets[scrollView] = proposedContentInset
+        
+        print("\(scrollView.frame.minY): \(proposedContentInset)")
         
         var actualRequiredContentInset = proposedContentInset
         
