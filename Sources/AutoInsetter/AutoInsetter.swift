@@ -97,22 +97,23 @@ private extension AutoInsetter {
     /// - Parameters:
     ///   - viewController: The view controller.
     ///   - success: Execution if view controller is not embedded type.
-    private func isNotEmbeddedViewController(_ viewController: UIViewController) -> Bool {
+    func isNotEmbeddedViewController(_ viewController: UIViewController) -> Bool {
         if !(viewController is UITableViewController) && !(viewController is UICollectionViewController) {
             return true
         }
         return false
     }
     
-    /// Calculate the actual inset values to use including any custom contentInset values.
+    /// Calculate the actual inset values to use for a scroll view.
     ///
     /// - Parameters:
     ///   - scrollView: Scroll view.
     ///   - requiredInsets: Required TabmanBar insets.
+    ///   - viewController: The view controller that contains the scroll view.
     /// - Returns: Actual contentInset values to use.
-    private func calculateActualRequiredContentInset(for scrollView: UIScrollView,
-                                                     from requiredInsetSpec: AutoInsetSpec,
-                                                     in viewController: UIViewController) -> UIEdgeInsets {
+    func calculateActualRequiredContentInset(for scrollView: UIScrollView,
+                                             from requiredInsetSpec: AutoInsetSpec,
+                                             in viewController: UIViewController) -> UIEdgeInsets {
         guard let superview = scrollView.superview else {
             fatalError("Attempting to inset a scroll view that has no superview")
         }
