@@ -99,7 +99,7 @@ private extension AutoInsetter {
                                              from requiredInsetSpec: AutoInsetSpec,
                                              in viewController: UIViewController) -> UIEdgeInsets {
         guard let superview = scrollView.superview else {
-            fatalError("Attempting to inset a scroll view that has no superview")
+            return .zero
         }
         
         viewController.view.layoutIfNeeded()
@@ -108,15 +108,23 @@ private extension AutoInsetter {
         let previousContentInset = currentScrollViewInsets[scrollView] ?? .zero
         
         // Calculate top / bottom insets relative to view position in child vc.
-        let relativeFrame = viewController.view.convert(scrollView.frame, from: superview)
-        let relativeTopInset = max(requiredContentInset.top - relativeFrame.minY, 0.0)
-        let bottomInsetMinY = viewController.view.bounds.height - requiredContentInset.bottom
-        let relativeBottomInset = fabs(min(bottomInsetMinY - relativeFrame.maxY, 0.0))
+        var proposedContentInset: UIEdgeInsets
         
-        let proposedContentInset = UIEdgeInsets(top: relativeTopInset,
+        if isEmbeddedViewController(viewController) { // Embedded VC is always full canvas
+            proposedContentInset = requiredContentInset
+        } else {
+            
+            let relativeFrame = viewController.view.convert(scrollView.frame, from: superview)
+            let relativeTopInset = max(requiredContentInset.top - relativeFrame.minY, 0.0)
+            let bottomInsetMinY = viewController.view.bounds.height - requiredContentInset.bottom
+            let relativeBottomInset = fabs(min(bottomInsetMinY - relativeFrame.maxY, 0.0))
+            
+            proposedContentInset = UIEdgeInsets(top: relativeTopInset,
                                                 left: 0.0,
                                                 bottom: relativeBottomInset,
                                                 right: 0.0)
+        }
+        
         currentScrollViewInsets[scrollView] = proposedContentInset
                 
         var actualRequiredContentInset = proposedContentInset
@@ -132,5 +140,17 @@ private extension AutoInsetter {
         }
         
         return actualRequiredContentInset
+    }
+    
+    /// Check whether a view controller is an 'embedded' view controller type (i.e. UITableViewController)
+    ///
+    /// - Parameters:
+    ///   - viewController: The view controller.
+    ///   - success: Execution if view controller is not embedded type.
+    func isEmbeddedViewController(_ viewController: UIViewController) -> Bool {
+        if (viewController is UITableViewController) || (viewController is UICollectionViewController) {
+            return true
+        }
+        return false
     }
 }
