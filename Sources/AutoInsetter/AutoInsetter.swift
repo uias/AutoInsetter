@@ -13,7 +13,7 @@ public final class AutoInsetter {
     
     // MARK: Properties
     
-    private var viewControllerInsets: [Int: UIEdgeInsets] = [:]
+    private var currentScrollViewInsets = [UIScrollView: UIEdgeInsets]()
     
     /// Whether auto-insetting is enabled.
     public var isEnabled: Bool = true
@@ -46,30 +46,24 @@ public final class AutoInsetter {
             }
             
             let requiredContentInset = calculateActualRequiredContentInset(for: scrollView,
-                                                                           from: requiredInsetSpec)
+                                                                           from: requiredInsetSpec,
+                                                                           in: childViewController)
             
-            // ensure scroll view is either at top or full height before doing automatic insetting
-            ensureLayoutIsValid(for: childViewController,
-                                with: scrollView,
-                                requiredContentInset: requiredContentInset,
-                                success:
-                {
-                    // dont update if we dont need to
-                    if scrollView.contentInset != requiredContentInset {
-                        
-                        let isTopInsetChanged = requiredContentInset.top != scrollView.contentInset.top
-                        
-                        scrollView.contentInset = requiredContentInset
-                        scrollView.scrollIndicatorInsets = requiredContentInset
-                        
-                        // only update contentOffset if the top contentInset has updated.
-                        if isTopInsetChanged {
-                            var contentOffset = scrollView.contentOffset
-                            contentOffset.y = -requiredContentInset.top
-                            scrollView.contentOffset = contentOffset
-                        }
-                    }
-            })
+            // dont update if we dont need to
+            if scrollView.contentInset != requiredContentInset {
+                
+                let isTopInsetChanged = requiredContentInset.top != scrollView.contentInset.top
+                
+                scrollView.contentInset = requiredContentInset
+                scrollView.scrollIndicatorInsets = requiredContentInset
+                
+                // only update contentOffset if the top contentInset has updated.
+                if isTopInsetChanged {
+                    var contentOffset = scrollView.contentOffset
+                    contentOffset.y = -requiredContentInset.top
+                    scrollView.contentOffset = contentOffset
+                }
+            }
         }
     }
     
@@ -94,67 +88,69 @@ public final class AutoInsetter {
 // MARK: - Utilities
 private extension AutoInsetter {
     
-    /// Check whether a view controller is not an 'embedded' view controller type (i.e. UITableViewController)
-    ///
-    /// - Parameters:
-    ///   - viewController: The view controller.
-    ///   - success: Execution if view controller is not embedded type.
-    private func isNotEmbeddedViewController(_ viewController: UIViewController) -> Bool {
-        if !(viewController is UITableViewController) && !(viewController is UICollectionViewController) {
-            return true
-        }
-        return false
-    }
-    
-    /// Calculate the actual inset values to use including any custom contentInset values.
+    /// Calculate the actual inset values to use for a scroll view.
     ///
     /// - Parameters:
     ///   - scrollView: Scroll view.
     ///   - requiredInsets: Required TabmanBar insets.
+    ///   - viewController: The view controller that contains the scroll view.
     /// - Returns: Actual contentInset values to use.
-    private func calculateActualRequiredContentInset(for scrollView: UIScrollView,
-                                                     from requiredInsetSpec: AutoInsetSpec) -> UIEdgeInsets {
-        var requiredContentInset = requiredInsetSpec.allRequiredInsets
-        let currentContentInset = self.viewControllerInsets[scrollView.hash] ?? .zero
-        
-        self.viewControllerInsets[scrollView.hash] = requiredContentInset
-        
-        // take account of custom top / bottom insets
-        let topInset = scrollView.contentInset.top - currentContentInset.top
-        if topInset != 0.0 {
-            requiredContentInset.top += topInset
-        }
-        let bottomInset = scrollView.contentInset.bottom - currentContentInset.bottom
-        if bottomInset != 0.0 {
-            requiredContentInset.bottom += bottomInset
+    func calculateActualRequiredContentInset(for scrollView: UIScrollView,
+                                             from requiredInsetSpec: AutoInsetSpec,
+                                             in viewController: UIViewController) -> UIEdgeInsets {
+        guard let superview = scrollView.superview else {
+            return .zero
         }
         
-        requiredContentInset.left = currentContentInset.left
-        requiredContentInset.right = currentContentInset.right
+        viewController.view.layoutIfNeeded()
         
-        return requiredContentInset
+        let requiredContentInset = requiredInsetSpec.allRequiredInsets
+        let previousContentInset = currentScrollViewInsets[scrollView] ?? .zero
+        
+        // Calculate top / bottom insets relative to view position in child vc.
+        var proposedContentInset: UIEdgeInsets
+        
+        if isEmbeddedViewController(viewController) { // Embedded VC is always full canvas
+            proposedContentInset = requiredContentInset
+        } else {
+            
+            let relativeFrame = viewController.view.convert(scrollView.frame, from: superview)
+            let relativeTopInset = max(requiredContentInset.top - relativeFrame.minY, 0.0)
+            let bottomInsetMinY = viewController.view.bounds.height - requiredContentInset.bottom
+            let relativeBottomInset = fabs(min(bottomInsetMinY - relativeFrame.maxY, 0.0))
+            
+            proposedContentInset = UIEdgeInsets(top: relativeTopInset,
+                                                left: 0.0,
+                                                bottom: relativeBottomInset,
+                                                right: 0.0)
+        }
+        
+        currentScrollViewInsets[scrollView] = proposedContentInset
+                
+        var actualRequiredContentInset = proposedContentInset
+        
+        // Take into account any custom insets for top / bottom
+        let customTopInset = scrollView.contentInset.top - previousContentInset.top
+        if customTopInset != 0.0 {
+            actualRequiredContentInset.top += customTopInset
+        }
+        let customBottomInset = scrollView.contentInset.bottom - previousContentInset.bottom
+        if customBottomInset != 0.0 {
+            actualRequiredContentInset.bottom += customBottomInset
+        }
+        
+        return actualRequiredContentInset
     }
     
-    private func ensureLayoutIsValid(for childViewController: UIViewController,
-                                     with scrollView: UIScrollView,
-                                     requiredContentInset: UIEdgeInsets,
-                                     success: () -> Void) {
-        if isNotEmbeddedViewController(childViewController) {
-            
-            var isValidLayout = true
-            if requiredContentInset.top > 0.0 {
-                isValidLayout = scrollView.frame.minY == 0.0
-            }
-            if requiredContentInset.bottom > 0.0 {
-                // TODO - Figure out a way to check whether bottom of scroll view goes underneath bar.
-            }
-            
-            if isValidLayout {
-                success()
-            }
-            
-        } else {
-            success()
+    /// Check whether a view controller is an 'embedded' view controller type (i.e. UITableViewController)
+    ///
+    /// - Parameters:
+    ///   - viewController: The view controller.
+    ///   - success: Execution if view controller is not embedded type.
+    func isEmbeddedViewController(_ viewController: UIViewController) -> Bool {
+        if (viewController is UITableViewController) || (viewController is UICollectionViewController) {
+            return true
         }
+        return false
     }
 }
