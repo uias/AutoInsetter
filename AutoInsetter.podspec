@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.swift_version = "4.0"
 
-  s.version      = "1.0.0"
+  s.version      = "1.1.0"
   s.summary      = "Provide auto insetting capabilities to view controllers."
   s.description  = <<-DESC
             Auto Inset engine that can automatically handle custom insetting of view controllers.
