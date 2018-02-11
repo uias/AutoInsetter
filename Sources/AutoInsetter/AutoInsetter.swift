@@ -99,7 +99,7 @@ private extension AutoInsetter {
                                              from requiredInsetSpec: AutoInsetSpec,
                                              in viewController: UIViewController) -> UIEdgeInsets {
         guard let superview = scrollView.superview else {
-            return .zero
+            return scrollView.contentInset
         }
         
         viewController.view.layoutIfNeeded()
@@ -130,12 +130,12 @@ private extension AutoInsetter {
         var actualRequiredContentInset = proposedContentInset
         
         // Take into account any custom insets for top / bottom
-        let customTopInset = scrollView.contentInset.top - previousContentInset.top
-        if customTopInset != 0.0 {
+        if scrollView.contentInset.top != 0.0 {
+            let customTopInset = scrollView.contentInset.top - previousContentInset.top
             actualRequiredContentInset.top += customTopInset
         }
-        let customBottomInset = scrollView.contentInset.bottom - previousContentInset.bottom
-        if customBottomInset != 0.0 {
+        if scrollView.contentInset.bottom != 0.0 {
+            let customBottomInset = scrollView.contentInset.bottom - previousContentInset.bottom
             actualRequiredContentInset.bottom += customBottomInset
         }
         
