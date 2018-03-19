@@ -3,11 +3,18 @@ All notable changes to this project will be documented in this file.
 `AutoInsetter` adheres to [Semantic Versioning](http://semver.org/).
 
 #### 1.x Releases
-- `1.2.x` Releases - [1.2.0](#120) | [1.2.1](#121)
+- `1.2.x` Releases - [1.2.0](#120) | [1.2.1](#121) | [1.2.2](#122)
 - `1.1.x` Releases - [1.1.0](#110)
 - `1.0.x` Releases - [1.0.0](#100)
 
 ---
+
+## [1.2.2](https://github.com/uias/AutoInsetter/releases/tag/1.2.2)
+Released on 2018-03-19
+
+#### Fixed
+- Fixed issue where `UITableViewController` and `UICollectionViewController` would not inset correctly.
+    - by [msaps](https://github.com/msaps)
 
 ## [1.2.1](https://github.com/uias/AutoInsetter/releases/tag/1.2.1)
 Released on 2018-02-11
