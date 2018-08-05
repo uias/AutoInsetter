@@ -61,7 +61,8 @@ public final class AutoInsetter {
                 // only update contentOffset if the top contentInset has updated.
                 if isTopInsetChanged {
                     var contentOffset = scrollView.contentOffset
-                    contentOffset.y -= topInsetDelta
+                    let candidateYOffset = contentOffset.y - topInsetDelta
+                    contentOffset.y = min(candidateYOffset, 0.0) // Only update content offset if we're pushing content 'down' ( < 0.0)
                     scrollView.contentOffset = contentOffset
                 }
             }
