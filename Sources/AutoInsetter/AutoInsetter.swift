@@ -14,6 +14,7 @@ public final class AutoInsetter {
     // MARK: Properties
     
     private var currentScrollViewInsets = [UIScrollView: UIEdgeInsets]()
+    private var currentContentOffsets = [UIScrollView: CGPoint]()
     
     /// Whether auto-insetting is enabled.
     public var isEnabled: Bool = true
@@ -60,9 +61,22 @@ public final class AutoInsetter {
                                 
                 // only update contentOffset if the top contentInset has updated.
                 if isTopInsetChanged {
-                    var contentOffset = scrollView.contentOffset
-                    let candidateYOffset = contentOffset.y - topInsetDelta
-                    contentOffset.y = min(candidateYOffset, 0.0) // Only update content offset if we're pushing content 'down' ( < 0.0)
+                    var contentOffset = self.currentContentOffsets[scrollView] ?? .zero
+                    
+                    // Calculate the user 'delta' - the amount that the user has scrolled
+                    // the scroll view before insetting.
+                    var userDelta = scrollView.contentOffset.y - contentOffset.y
+                    if userDelta > 0 { // If offset delta exists compare to insets to ensure it is user.
+                        userDelta += contentOffset.y + scrollView.contentInset.top
+                    }
+    
+                    contentOffset.y -= topInsetDelta
+                    self.currentContentOffsets[scrollView] = contentOffset
+                    
+                    if userDelta > 0 { // apply user delta
+                        contentOffset.y += userDelta
+                    }
+                    
                     scrollView.contentOffset = contentOffset
                 }
             }
