@@ -13,7 +13,7 @@ public final class AutoInsetter {
     
     // MARK: Properties
     
-    private var currentScrollViewInsets = [UIScrollView: UIEdgeInsets]()
+    private var currentContentInsets = [UIScrollView: UIEdgeInsets]()
     private var currentContentOffsets = [UIScrollView: CGPoint]()
     
     /// Whether auto-insetting is enabled.
@@ -117,7 +117,7 @@ private extension AutoInsetter {
         viewController.view.layoutIfNeeded()
         
         let requiredContentInset = requiredInsetSpec.allRequiredInsets
-        let previousContentInset = currentScrollViewInsets[scrollView] ?? .zero
+        let previousContentInset = currentContentInsets[scrollView] ?? .zero
         
         // Calculate top / bottom insets relative to view position in child vc.
         var proposedContentInset: UIEdgeInsets
@@ -140,7 +140,7 @@ private extension AutoInsetter {
                                                 right: originalContentInset.right)
         }
         
-        currentScrollViewInsets[scrollView] = proposedContentInset
+        currentContentInsets[scrollView] = proposedContentInset
                 
         var actualRequiredContentInset = proposedContentInset
         
