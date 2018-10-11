@@ -29,6 +29,7 @@
 		46F4BEAD216FC4DC002616F0 /* Tabman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F4BEAB216FC4DC002616F0 /* Tabman.framework */; };
 		46F4BEAE216FC4EB002616F0 /* AutoInsetter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460911A7200E5291008DC38E /* AutoInsetter.framework */; };
 		46F4BEAF216FC4EB002616F0 /* AutoInsetter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 460911A7200E5291008DC38E /* AutoInsetter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		46F4BEBA216FC585002616F0 /* AutoInsetterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F4BEB9216FC585002616F0 /* AutoInsetterUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 460911A6200E5291008DC38E;
 			remoteInfo = AutoInsetter;
+		};
+		46F4BEBC216FC585002616F0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4609119E200E5291008DC38E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 46F4BE84216FC439002616F0;
+			remoteInfo = AutoInsetterPlayground;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -88,6 +96,9 @@
 		46F4BE9F216FC46E002616F0 /* ScenarioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioViewController.swift; sourceTree = "<group>"; };
 		46F4BEAA216FC4DC002616F0 /* Pageboy.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pageboy.framework; path = ../Carthage/Build/iOS/Pageboy.framework; sourceTree = "<group>"; };
 		46F4BEAB216FC4DC002616F0 /* Tabman.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Tabman.framework; path = ../Carthage/Build/iOS/Tabman.framework; sourceTree = "<group>"; };
+		46F4BEB7216FC584002616F0 /* AutoInsetterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoInsetterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		46F4BEB9216FC585002616F0 /* AutoInsetterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoInsetterUITests.swift; sourceTree = "<group>"; };
+		46F4BEBB216FC585002616F0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +127,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		46F4BEB4216FC584002616F0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -125,6 +143,7 @@
 				46996142200EA4B700C1D9CD /* AutoInsetter */,
 				46F4BE86216FC43A002616F0 /* AutoInsetterPlayground */,
 				46996150200EA4C200C1D9CD /* AutoInsetterTests */,
+				46F4BEB8216FC585002616F0 /* AutoInsetterUITests */,
 				460911A8200E5291008DC38E /* Products */,
 				46F4BEA9216FC4DC002616F0 /* Frameworks */,
 			);
@@ -136,6 +155,7 @@
 				460911A7200E5291008DC38E /* AutoInsetter.framework */,
 				460911B0200E5291008DC38E /* AutoInsetterTests.xctest */,
 				46F4BE85216FC439002616F0 /* AutoInsetterPlayground.app */,
+				46F4BEB7216FC584002616F0 /* AutoInsetterUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -222,6 +242,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		46F4BEB8216FC585002616F0 /* AutoInsetterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				46F4BEB9216FC585002616F0 /* AutoInsetterUITests.swift */,
+				46F4BEBB216FC585002616F0 /* Info.plist */,
+			);
+			path = AutoInsetterUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -292,6 +321,24 @@
 			productReference = 46F4BE85216FC439002616F0 /* AutoInsetterPlayground.app */;
 			productType = "com.apple.product-type.application";
 		};
+		46F4BEB6216FC584002616F0 /* AutoInsetterUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 46F4BEBE216FC585002616F0 /* Build configuration list for PBXNativeTarget "AutoInsetterUITests" */;
+			buildPhases = (
+				46F4BEB3216FC584002616F0 /* Sources */,
+				46F4BEB4216FC584002616F0 /* Frameworks */,
+				46F4BEB5216FC584002616F0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				46F4BEBD216FC585002616F0 /* PBXTargetDependency */,
+			);
+			name = AutoInsetterUITests;
+			productName = AutoInsetterUITests;
+			productReference = 46F4BEB7216FC584002616F0 /* AutoInsetterUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -316,6 +363,11 @@
 						CreatedOnToolsVersion = 10.0;
 						ProvisioningStyle = Automatic;
 					};
+					46F4BEB6216FC584002616F0 = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 46F4BE84216FC439002616F0;
+					};
 				};
 			};
 			buildConfigurationList = 460911A1200E5291008DC38E /* Build configuration list for PBXProject "AutoInsetter" */;
@@ -334,6 +386,7 @@
 				460911A6200E5291008DC38E /* AutoInsetter */,
 				46F4BE84216FC439002616F0 /* AutoInsetterPlayground */,
 				460911AF200E5291008DC38E /* AutoInsetterTests */,
+				46F4BEB6216FC584002616F0 /* AutoInsetterUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -361,6 +414,13 @@
 				46F4BE92216FC43B002616F0 /* LaunchScreen.storyboard in Resources */,
 				46F4BEA1216FC46E002616F0 /* Scenarios.storyboard in Resources */,
 				46F4BE8F216FC43B002616F0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		46F4BEB5216FC584002616F0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +485,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		46F4BEB3216FC584002616F0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46F4BEBA216FC585002616F0 /* AutoInsetterUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -437,6 +505,11 @@
 			isa = PBXTargetDependency;
 			target = 460911A6200E5291008DC38E /* AutoInsetter */;
 			targetProxy = 46F4BEB0216FC4EB002616F0 /* PBXContainerItemProxy */;
+		};
+		46F4BEBD216FC585002616F0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 46F4BE84216FC439002616F0 /* AutoInsetterPlayground */;
+			targetProxy = 46F4BEBC216FC585002616F0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -683,6 +756,41 @@
 			};
 			name = Release;
 		};
+		46F4BEBF216FC585002616F0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = AutoInsetterUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uias.AutoInsetterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AutoInsetterPlayground;
+			};
+			name = Debug;
+		};
+		46F4BEC0216FC585002616F0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = AutoInsetterUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.uias.AutoInsetterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AutoInsetterPlayground;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -718,6 +826,15 @@
 			buildConfigurations = (
 				46F4BE94216FC43B002616F0 /* Debug */,
 				46F4BE95216FC43B002616F0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		46F4BEBE216FC585002616F0 /* Build configuration list for PBXNativeTarget "AutoInsetterUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				46F4BEBF216FC585002616F0 /* Debug */,
+				46F4BEC0216FC585002616F0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
