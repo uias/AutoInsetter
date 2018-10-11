@@ -45,9 +45,7 @@ class ScenarioListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let scenario = Scenario.allCases[indexPath.row]
-        
-        let viewController = ScenarioViewController(numberOfPages: scenario.numberOfPages)
-        navigationController?.pushViewController(viewController, animated: true)
+        navigationController?.pushViewController(scenario.makeViewController(), animated: true)
     }
 }
 
@@ -64,18 +62,21 @@ extension ScenarioListViewController.Scenario {
         }
     }
     
-    var viewControllerType: UIViewController.Type {
-        switch self {
-        case .uiTableView:
-            return ScrollViewContainerViewController<UITableView>.self
-        case .uiCollectionView:
-            return ScrollViewContainerViewController<UICollectionView>.self
-        case .uiTableViewController:
-            return UITableViewController.self
-        }
-    }
-    
     var numberOfPages: Int {
         return 5
+    }
+}
+
+private extension ScenarioListViewController.Scenario {
+    
+    func makeViewController() -> UIViewController {
+        switch self {
+        case .uiTableView:
+            return ScenarioViewController<ScrollViewContainerViewController<UITableView>>.init(numberOfPages: numberOfPages)
+        case .uiCollectionView:
+            return ScenarioViewController<ScrollViewContainerViewController<UICollectionView>>.init(numberOfPages: numberOfPages)
+        case .uiTableViewController:
+            return ScenarioViewController<UITableViewController>.init(numberOfPages: numberOfPages)
+        }
     }
 }

@@ -20,6 +20,7 @@ class ScrollViewContainerViewController<ScrollViewType: UIScrollView>: UIViewCon
         super.viewDidLoad()
         
         view.addSubview(scrollView)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
