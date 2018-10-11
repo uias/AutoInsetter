@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  AutoInsetter-Playground
+//  AutoInsetterPlayground
 //
 //  Created by Merrick Sapsford on 11/10/2018.
 //  Copyright © 2018 UI At Six. All rights reserved.
