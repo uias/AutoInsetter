@@ -4,6 +4,7 @@ platform :ios do
   
   desc "Run unit tests and check library"
   lane :test do
+    carthage(platform: "iOS")
     scan(workspace: "AutoInsetter.xcworkspace", scheme: "AutoInsetter", clean: true)
     pod_lib_lint(verbose: true)
   end
