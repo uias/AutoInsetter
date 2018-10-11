@@ -10,14 +10,6 @@ import UIKit
 
 class ScenarioListViewController: UITableViewController {
     
-    // MARK: Types
-    
-    enum Scenario: CaseIterable {
-        case uiTableView
-        case uiTableViewController
-        case uiCollectionView
-    }
-    
     // MARK: UITableViewDataSource
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -46,37 +38,5 @@ class ScenarioListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let scenario = Scenario.allCases[indexPath.row]
         navigationController?.pushViewController(scenario.makeViewController(), animated: true)
-    }
-}
-
-extension ScenarioListViewController.Scenario {
-    
-    var title: String {
-        switch self {
-        case .uiTableView:
-            return "UITableView"
-        case .uiTableViewController:
-            return "UITableViewController"
-        case .uiCollectionView:
-            return "UICollectionView"
-        }
-    }
-    
-    var numberOfPages: Int {
-        return 5
-    }
-}
-
-private extension ScenarioListViewController.Scenario {
-    
-    func makeViewController() -> UIViewController {
-        switch self {
-        case .uiTableView:
-            return ScenarioViewController<TableViewTestViewController>.init(numberOfPages: numberOfPages)
-        case .uiCollectionView:
-            return ScenarioViewController<CollectionViewTestViewController>.init(numberOfPages: numberOfPages)
-        case .uiTableViewController:
-            return ScenarioViewController<UITableViewController>.init(numberOfPages: numberOfPages)
-        }
     }
 }

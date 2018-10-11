@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		469EB617216F8F5E00366AF1 /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469EB616216F8F5E00366AF1 /* Scenario.swift */; };
 		46B30622216F29A200A918AE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46B30621216F29A200A918AE /* AppDelegate.swift */; };
 		46B30629216F29A300A918AE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46B30628216F29A300A918AE /* Assets.xcassets */; };
 		46B3062C216F29A300A918AE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46B3062A216F29A300A918AE /* LaunchScreen.storyboard */; };
@@ -37,6 +38,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		469EB616216F8F5E00366AF1 /* Scenario.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scenario.swift; sourceTree = "<group>"; };
 		46B3061E216F29A200A918AE /* AutoInsetter-Playground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AutoInsetter-Playground.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46B30621216F29A200A918AE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46B30628216F29A300A918AE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				46B3064C216F2BDC00A918AE /* Scenarios.storyboard */,
+				469EB616216F8F5E00366AF1 /* Scenario.swift */,
 				46B30648216F2BD100A918AE /* ScenarioListViewController.swift */,
 				46B30649216F2BD100A918AE /* ScenarioViewController.swift */,
 				46B30664216F402700A918AE /* ViewControllers */,
@@ -229,6 +232,7 @@
 				46B3064A216F2BD100A918AE /* ScenarioListViewController.swift in Sources */,
 				46B3066A216F415500A918AE /* CollectionViewTestViewController.swift in Sources */,
 				46B30668216F412300A918AE /* TableViewTestViewController.swift in Sources */,
+				469EB617216F8F5E00366AF1 /* Scenario.swift in Sources */,
 				46B3064B216F2BD100A918AE /* ScenarioViewController.swift in Sources */,
 				46B30622216F29A200A918AE /* AppDelegate.swift in Sources */,
 			);

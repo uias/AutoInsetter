@@ -14,13 +14,15 @@ class ScenarioViewController<ChildViewControllerType: UIViewController>: TabmanV
     
     // MARK: Properties
     
+    let scenario: Scenario
     let viewControllers: [UIViewController]
     
     // MARK: Init
     
-    init(numberOfPages: Int) {
+    init(scenario: Scenario) {
+        self.scenario = scenario
         var viewControllers = [UIViewController]()
-        for _ in 0 ..< numberOfPages {
+        for _ in 0 ..< scenario.numberOfPages {
             viewControllers.append(ChildViewControllerType())
         }
         self.viewControllers = viewControllers
@@ -32,6 +34,12 @@ class ScenarioViewController<ChildViewControllerType: UIViewController>: TabmanV
     }
     
     // MARK: Lifecycle
+    
+    override func loadView() {
+        super.loadView()
+        
+        title = scenario.title
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
