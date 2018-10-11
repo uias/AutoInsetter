@@ -72,9 +72,9 @@ private extension ScenarioListViewController.Scenario {
     func makeViewController() -> UIViewController {
         switch self {
         case .uiTableView:
-            return ScenarioViewController<ScrollViewContainerViewController<UITableView>>.init(numberOfPages: numberOfPages)
+            return ScenarioViewController<TableViewTestViewController>.init(numberOfPages: numberOfPages)
         case .uiCollectionView:
-            return ScenarioViewController<ScrollViewContainerViewController<UICollectionView>>.init(numberOfPages: numberOfPages)
+            return ScenarioViewController<CollectionViewTestViewController>.init(numberOfPages: numberOfPages)
         case .uiTableViewController:
             return ScenarioViewController<UITableViewController>.init(numberOfPages: numberOfPages)
         }

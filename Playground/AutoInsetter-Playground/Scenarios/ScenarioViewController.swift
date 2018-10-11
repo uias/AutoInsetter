@@ -10,7 +10,7 @@ import UIKit
 import Tabman
 import Pageboy
 
-class ScenarioViewController<ChildViewControllerType: UIViewController>: TabmanViewController, PageboyViewControllerDataSource {
+class ScenarioViewController<ChildViewControllerType: UIViewController>: TabmanViewController, PageboyViewControllerDataSource, TMBarDataSource {
     
     // MARK: Properties
     
@@ -19,8 +19,11 @@ class ScenarioViewController<ChildViewControllerType: UIViewController>: TabmanV
     // MARK: Init
     
     init(numberOfPages: Int) {
-        self.viewControllers = [UIViewController].init(repeating: ChildViewControllerType(),
-                                                       count: numberOfPages)
+        var viewControllers = [UIViewController]()
+        for _ in 0 ..< numberOfPages {
+            viewControllers.append(ChildViewControllerType())
+        }
+        self.viewControllers = viewControllers
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -36,6 +39,8 @@ class ScenarioViewController<ChildViewControllerType: UIViewController>: TabmanV
         view.backgroundColor = .white
         
         dataSource = self
+        
+        addBar(TMNavigationBar(for: TMBar.ButtonBar()), dataSource: self, at: .top)
     }
     
     // MARK: PageboyViewControllerDataSource
@@ -50,5 +55,9 @@ class ScenarioViewController<ChildViewControllerType: UIViewController>: TabmanV
     
     func defaultPage(for pageboyViewController: PageboyViewController) -> PageboyViewController.Page? {
         return nil
+    }
+    
+    func barItem(for bar: TMBar, at index: Int) -> TMBarItem {
+        return TMBarItem(title: "Page Index \(index)")
     }
 }
