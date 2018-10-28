@@ -42,6 +42,9 @@ public final class AutoInsetter {
             }
         }
         
+        guard childViewController.shouldEvaluateEmbeddedScrollViews() else {
+            return
+        }
         childViewController.forEachEmbeddedScrollView { (scrollView) in
             
             if #available(iOS 11.0, *) {
