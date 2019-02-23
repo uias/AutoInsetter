@@ -17,11 +17,31 @@ public final class AutoInsetter {
     private var currentContentOffsets = [UIScrollView: CGPoint]()
     
     /// Whether auto-insetting is enabled.
-    public var isEnabled: Bool = true
+    @available(*, deprecated: 1.5.0, message: "Use enable(for:)")
+    public var isEnabled: Bool {
+        set {
+            if newValue {
+                enable(for: nil)
+            }
+        } get {
+            return _isEnabled
+        }
+    }
+    private var _isEnabled: Bool = true
     
     // MARK: Init
     
     public init() {}
+    
+    // MARK: State
+    
+    /// Enable Auto Insetting for a view controller.
+    ///
+    /// - Parameter viewController: View controller that will provide insetting.
+    public func enable(for viewController: UIViewController?) {
+        _isEnabled = true
+        viewController?.automaticallyAdjustsScrollViewInsets = false
+    }
     
     // MARK: Insetting
     
@@ -32,7 +52,7 @@ public final class AutoInsetter {
     ///   - requiredInsetSpec: The required inset specification.
     public func inset(_ childViewController: UIViewController?,
                       requiredInsetSpec: AutoInsetSpec) {
-        guard let childViewController = childViewController, isEnabled else {
+        guard let childViewController = childViewController, _isEnabled else {
             return
         }
         
