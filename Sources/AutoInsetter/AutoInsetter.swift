@@ -21,7 +21,7 @@ public final class AutoInsetter {
     public var isEnabled: Bool {
         set {
             if newValue {
-                enable(for: nil)
+                _enable(for: nil)
             }
         } get {
             return _isEnabled
@@ -39,6 +39,10 @@ public final class AutoInsetter {
     ///
     /// - Parameter viewController: View controller that will provide insetting.
     public func enable(for viewController: UIViewController?) {
+        _enable(for: viewController)
+    }
+    
+    private func _enable(for viewController: UIViewController?) {
         _isEnabled = true
         viewController?.automaticallyAdjustsScrollViewInsets = false
     }
