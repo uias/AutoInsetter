@@ -27,7 +27,7 @@ public final class AutoInsetter {
             return _isEnabled
         }
     }
-    private var _isEnabled: Bool = true
+    private var _isEnabled: Bool = false
     
     // MARK: Init
     
