@@ -47,6 +47,7 @@ class TableViewTestViewController: UIViewController, UITableViewDataSource, UITa
         }
         
         cell.textLabel?.text = "Row \(indexPath.row)"
+        cell.backgroundColor = .clear
         
         return cell
     }
