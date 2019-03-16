@@ -41,7 +41,7 @@ extension Scenario {
         case .uiCollectionView:
             return ScenarioViewController<CollectionViewTestViewController>.init(scenario: self)
         case .uiTableViewController:
-            return ScenarioViewController<UITableViewController>.init(scenario: self)
+            return ScenarioViewController<TableViewControllerTestViewController>.init(scenario: self)
         }
     }
 }
