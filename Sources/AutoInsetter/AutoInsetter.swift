@@ -70,63 +70,57 @@ public final class AutoInsetter {
             return
         }
         viewController.forEachEmbeddedScrollView { (scrollView) in
+            let calculator = self.makeCalculator(for: scrollView)
+            let executor = InsetExecutor(view: scrollView, calculator: calculator)
             
-            if #available(iOS 11.0, *) {
-                scrollView.contentInsetAdjustmentBehavior = .never
-            }
-            
-            let requiredContentInset = calculateActualRequiredContentInset(for: scrollView,
-                                                                           from: requiredInsetSpec,
-                                                                           in: viewController)
-            
-            // dont update if we dont need to
-            if scrollView.contentInset != requiredContentInset {
-                
-                let isTopInsetChanged = requiredContentInset.top != scrollView.contentInset.top
-                let topInsetDelta = requiredContentInset.top - scrollView.contentInset.top
-
-                scrollView.contentInset = requiredContentInset
-                scrollView.scrollIndicatorInsets = requiredContentInset
-                                
-                // only update contentOffset if the top contentInset has updated.
-                if isTopInsetChanged {
-                    var contentOffset = self.currentContentOffsets[scrollView] ?? .zero
-                    
-                    // Calculate the user 'delta' - the amount that the user has scrolled
-                    // the scroll view before insetting.
-                    var userDelta = scrollView.contentOffset.y - contentOffset.y
-                    if userDelta > 0 { // If offset delta exists compare to insets to ensure it is user.
-                        userDelta += contentOffset.y + scrollView.contentInset.top
-                    }
-    
-                    contentOffset.y -= topInsetDelta
-                    self.currentContentOffsets[scrollView] = contentOffset
-                    
-                    if userDelta > 0 { // apply user delta
-                        contentOffset.y += userDelta
-                    }
-                    
-                    scrollView.contentOffset = contentOffset
-                }
-            }
+            executor.execute()
+//            let requiredContentInset = calculateActualRequiredContentInset(for: scrollView,
+//                                                                           from: requiredInsetSpec,
+//                                                                           in: viewController)
+//            print("requiredContentInset \(requiredContentInset)")
+//
+//            // dont update if we dont need to
+//            if scrollView.contentInset != requiredContentInset {
+//
+//                let isTopInsetChanged = requiredContentInset.top != scrollView.contentInset.top
+//                let topInsetDelta = requiredContentInset.top - scrollView.contentInset.top
+//
+//                scrollView.contentInset = requiredContentInset
+//                scrollView.scrollIndicatorInsets = requiredContentInset
+//
+//                // only update contentOffset if the top contentInset has updated.
+//                if isTopInsetChanged {
+//                    var contentOffset = self.currentContentOffsets[scrollView] ?? .zero
+//
+//                    // Calculate the user 'delta' - the amount that the user has scrolled
+//                    // the scroll view before insetting.
+//                    var userDelta = scrollView.contentOffset.y - contentOffset.y
+//                    if userDelta > 0 { // If offset delta exists compare to insets to ensure it is user.
+//                        userDelta += contentOffset.y + scrollView.contentInset.top
+//                    }
+//
+//                    contentOffset.y -= topInsetDelta
+//                    self.currentContentOffsets[scrollView] = contentOffset
+//
+//                    if userDelta > 0 { // apply user delta
+//                        contentOffset.y += userDelta
+//                    }
+//
+//                    scrollView.contentOffset = contentOffset
+//                }
+//            }
         }
     }
+}
+
+extension AutoInsetter {
     
-    private func reset(_ viewController: UIViewController,
-                       from requiredInsetSpec: AutoInsetSpec) {
+    private func makeCalculator(for scrollView: UIScrollView) -> InsetCalculator {
         
-        if #available(iOS 11, *) {
-            viewController.additionalSafeAreaInsets = .zero
+        if let tableView = scrollView as? UITableView {
+            return TableViewInsetCalculator(view: tableView)
         }
-        
-        viewController.forEachEmbeddedScrollView { (scrollView) in
-            if #available(iOS 11, *) {
-                scrollView.contentInsetAdjustmentBehavior = .automatic
-            }
-            scrollView.contentInset = .zero
-            scrollView.contentOffset = .zero
-            scrollView.scrollIndicatorInsets = .zero
-        }
+        return ScrollViewInsetCalculator(view: scrollView)
     }
 }
 
