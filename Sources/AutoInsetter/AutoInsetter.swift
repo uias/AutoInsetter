@@ -156,8 +156,7 @@ private extension AutoInsetter {
             
         } else { // Standard View controller
             
-            let relativeSuperview = viewController.view
-            let relativeFrame = viewController.view.convert(scrollView.frame, from: relativeSuperview)
+            let relativeFrame = viewController.view.convert(scrollView.frame, from: scrollView.superview)
             let relativeTopInset = max(requiredContentInset.top - relativeFrame.minY, 0.0)
             let bottomInsetMinY = viewController.view.bounds.height - requiredContentInset.bottom
             let relativeBottomInset = abs(min(bottomInsetMinY - relativeFrame.maxY, 0.0))
