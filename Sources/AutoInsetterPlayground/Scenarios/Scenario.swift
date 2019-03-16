@@ -12,6 +12,7 @@ enum Scenario: CaseIterable {
     case uiTableView
     case uiTableViewController
     case uiCollectionView
+    case childUIScrollView
 }
 
 extension Scenario {
@@ -24,6 +25,8 @@ extension Scenario {
             return "UITableViewController"
         case .uiCollectionView:
             return "UICollectionView"
+        case .childUIScrollView:
+            return "Child UIScrollView"
         }
     }
     
@@ -42,6 +45,8 @@ extension Scenario {
             return ScenarioViewController<CollectionViewTestViewController>.init(scenario: self)
         case .uiTableViewController:
             return ScenarioViewController<TableViewControllerTestViewController>.init(scenario: self)
+        case .childUIScrollView:
+            return ScenarioViewController<EmbeddedChildTestViewController>.init(scenario: self)
         }
     }
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		460463C5223CF3A100E19258 /* TableViewControllerTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460463C4223CF3A100E19258 /* TableViewControllerTestViewController.swift */; };
+		460463C7223CF44E00E19258 /* EmbeddedChildTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 460463C6223CF44E00E19258 /* EmbeddedChildTestViewController.swift */; };
 		460911B1200E5291008DC38E /* AutoInsetter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460911A7200E5291008DC38E /* AutoInsetter.framework */; };
 		461197182221C43C0033FE04 /* AutoInsetter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460911A7200E5291008DC38E /* AutoInsetter.framework */; };
 		461197192221C4840033FE04 /* Pageboy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F4BEAA216FC4DC002616F0 /* Pageboy.framework */; };
@@ -75,6 +76,7 @@
 
 /* Begin PBXFileReference section */
 		460463C4223CF3A100E19258 /* TableViewControllerTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewControllerTestViewController.swift; sourceTree = "<group>"; };
+		460463C6223CF44E00E19258 /* EmbeddedChildTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedChildTestViewController.swift; sourceTree = "<group>"; };
 		460911A7200E5291008DC38E /* AutoInsetter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AutoInsetter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		460911B0200E5291008DC38E /* AutoInsetterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoInsetterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		464CFD8720111C5000D7DEDA /* EmbeddedScrollViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedScrollViewTests.swift; sourceTree = "<group>"; };
@@ -225,6 +227,7 @@
 				46F4BE9C216FC46E002616F0 /* TableViewTestViewController.swift */,
 				46F4BE9D216FC46E002616F0 /* CollectionViewTestViewController.swift */,
 				460463C4223CF3A100E19258 /* TableViewControllerTestViewController.swift */,
+				460463C6223CF44E00E19258 /* EmbeddedChildTestViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				46F4BEA2216FC46E002616F0 /* ScenarioListViewController.swift in Sources */,
 				46F4BE88216FC43A002616F0 /* AppDelegate.swift in Sources */,
 				46F4BEA3216FC46E002616F0 /* TableViewTestViewController.swift in Sources */,
+				460463C7223CF44E00E19258 /* EmbeddedChildTestViewController.swift in Sources */,
 				46F4BEA5216FC46E002616F0 /* Scenario.swift in Sources */,
 				46F4BEA4216FC46E002616F0 /* CollectionViewTestViewController.swift in Sources */,
 			);
