@@ -20,9 +20,13 @@ protocol InsetCalculator: class {
 internal class ViewInsetCalculator<InsetView: UIScrollView>: InsetCalculator {
     
     let view: InsetView
+    let viewController: UIViewController
     
-    init(view: InsetView) {
+    init(view: InsetView, viewController: UIViewController) {
         self.view = view
+        self.viewController = viewController
+        
+        viewController.view.layoutIfNeeded()
     }
     
     func calculateContentInset(from spec: AutoInsetSpec) -> UIEdgeInsets? {

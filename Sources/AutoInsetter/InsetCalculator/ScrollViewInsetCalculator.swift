@@ -11,7 +11,7 @@ import UIKit
 class ScrollViewInsetCalculator: ViewInsetCalculator<UIScrollView> {
     
     override func calculateContentInset(from spec: AutoInsetSpec) -> UIEdgeInsets? {
-        return nil
+        return UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0)
     }
     
     override func calculateContentOffset(from spec: AutoInsetSpec) -> CGPoint? {

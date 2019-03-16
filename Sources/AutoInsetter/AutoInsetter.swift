@@ -70,8 +70,8 @@ public final class AutoInsetter {
             return
         }
         viewController.forEachEmbeddedScrollView { (scrollView) in
-            let calculator = self.makeCalculator(for: scrollView)
-            let executor = InsetExecutor(view: scrollView, calculator: calculator)
+            let calculator = self.makeInsetCalculator(for: scrollView, viewController: viewController)
+            let executor = InsetExecutor(view: scrollView, calculator: calculator, spec: requiredInsetSpec)
             
             executor.execute()
 //            let requiredContentInset = calculateActualRequiredContentInset(for: scrollView,
@@ -115,12 +115,12 @@ public final class AutoInsetter {
 
 extension AutoInsetter {
     
-    private func makeCalculator(for scrollView: UIScrollView) -> InsetCalculator {
+    private func makeInsetCalculator(for scrollView: UIScrollView, viewController: UIViewController) -> InsetCalculator {
         
         if let tableView = scrollView as? UITableView {
-            return TableViewInsetCalculator(view: tableView)
+            return TableViewInsetCalculator(view: tableView, viewController: viewController)
         }
-        return ScrollViewInsetCalculator(view: scrollView)
+        return ScrollViewInsetCalculator(view: scrollView, viewController: viewController)
     }
 }
 
