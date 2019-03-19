@@ -40,8 +40,13 @@ class ScrollViewTestViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        label.preferredMaxLayoutWidth = scrollView.bounds.size.width
+     
+        if #available(iOS 11, *) {
+            let safeAreaWidth = view.safeAreaInsets.left + view.safeAreaInsets.right
+            label.preferredMaxLayoutWidth = scrollView.bounds.size.width - safeAreaWidth
+        } else {
+            label.preferredMaxLayoutWidth = scrollView.bounds.size.width
+        }
     }
 }
 
