@@ -31,12 +31,13 @@ internal class InsetExecutor {
         
         // If content inset has changed
         if let contentInset = calculator.calculateContentInset(from: spec) {
-            
-            view.contentInset = contentInset
             store.store(contentInset: contentInset, for: view)
             
-            // TODO
-            hasTopContentInsetChanged = false
+            let contentInset = applyCustomContentInset(to: contentInset, from: previousContentInset)
+            
+            hasTopContentInsetChanged = contentInset.top != view.contentInset.top
+            view.contentInset = contentInset
+            
         } else {
             hasTopContentInsetChanged = false
         }
@@ -50,5 +51,28 @@ internal class InsetExecutor {
         if let scrollIndicatorInsets = calculator.calculateScrollIndicatorInsets(from: spec) {
             view.scrollIndicatorInsets = scrollIndicatorInsets
         }
+    }
+    
+    //  MARK: Utility
+    
+    private func applyCustomContentInset(to contentInset: UIEdgeInsets, from previous: UIEdgeInsets?) -> UIEdgeInsets {
+        let previous = previous ?? .zero
+        var contentInset = contentInset
+        
+        // Take into account any custom insets
+        if view.contentInset.top != 0.0 {
+            contentInset.top += view.contentInset.top - previous.top
+        }
+        if view.contentInset.left != 0.0 {
+            contentInset.left += view.contentInset.left - previous.left
+        }
+        if view.contentInset.bottom != 0.0 {
+            contentInset.bottom += view.contentInset.bottom - previous.bottom
+        }
+        if  view.contentInset.right != 0.0 {
+            contentInset.right += view.contentInset.right - previous.right
+        }
+        
+        return contentInset
     }
 }
