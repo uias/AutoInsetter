@@ -24,15 +24,20 @@ internal class InsetExecutor {
         }
     }
     
-    func execute() {
+    func execute(store: InsetStore) {
+        
+        let hasTopContentInsetChanged: Bool
         
         // If content inset has changed
         if let contentInset = calculator.calculateContentInset(from: spec) {
             view.contentInset = contentInset
+            hasTopContentInsetChanged = true
+        } else {
+            hasTopContentInsetChanged = false
         }
         
         // If content offset has changed
-        if let contentOffset = calculator.calculateContentOffset(from: spec) {
+        if let contentOffset = calculator.calculateContentOffset(from: spec), hasTopContentInsetChanged {
             view.contentOffset = contentOffset
         }
         

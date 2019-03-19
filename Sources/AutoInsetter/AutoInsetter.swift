@@ -16,6 +16,8 @@ public final class AutoInsetter {
     private var currentContentInsets = [UIScrollView: UIEdgeInsets]()
     private var currentContentOffsets = [UIScrollView: CGPoint]()
     
+    private let insetStore: InsetStore = DefaultInsetStore()
+    
     /// Whether auto-insetting is enabled.
     @available(*, deprecated: 1.5.0, message: "Use enable(for:)")
     public var isEnabled: Bool {
@@ -73,7 +75,7 @@ public final class AutoInsetter {
             let calculator = self.makeInsetCalculator(for: scrollView, viewController: viewController)
             let executor = InsetExecutor(view: scrollView, calculator: calculator, spec: requiredInsetSpec)
             
-            executor.execute()
+            executor.execute(store: insetStore)
 //            let requiredContentInset = calculateActualRequiredContentInset(for: scrollView,
 //                                                                           from: requiredInsetSpec,
 //                                                                           in: viewController)
