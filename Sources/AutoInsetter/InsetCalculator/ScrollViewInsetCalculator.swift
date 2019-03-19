@@ -11,7 +11,12 @@ import UIKit
 class ScrollViewInsetCalculator: ViewInsetCalculator<UIScrollView> {
     
     override func calculateContentInset(from spec: AutoInsetSpec) -> UIEdgeInsets? {
-        return UIEdgeInsets(top: 200, left: 0, bottom: 0, right: 0)
+        let contentInset = makeContentAndScrollIndicatorInsets(from: spec)
+        guard contentInset != view.contentInset else {
+            return nil
+        }
+        
+        return contentInset
     }
     
     override func calculateContentOffset(from spec: AutoInsetSpec) -> CGPoint? {
@@ -19,6 +24,34 @@ class ScrollViewInsetCalculator: ViewInsetCalculator<UIScrollView> {
     }
     
     override func calculateScrollIndicatorInsets(from spec: AutoInsetSpec) -> UIEdgeInsets? {
-        return nil
+        let scrollIndicatorInsets = makeContentAndScrollIndicatorInsets(from: spec)
+        guard scrollIndicatorInsets != view.scrollIndicatorInsets else {
+            return nil
+        }
+        return scrollIndicatorInsets
+    }
+    
+    // MARK: Calculations
+    
+    private func makeContentAndScrollIndicatorInsets(from spec: AutoInsetSpec) -> UIEdgeInsets {
+        let allRequiredInsets = spec.allRequiredInsets
+        
+        let relativeFrame = viewController.view.convert(view.frame, from: view.superview)
+        
+        // top
+        let topInset = max(allRequiredInsets.top - relativeFrame.minY, 0.0)
+        
+        // left
+        let leftInset = max(allRequiredInsets.left - relativeFrame.minX, 0.0)
+        
+        // right
+        let rightInsetMinX = viewController.view.bounds.width - allRequiredInsets.right
+        let rightInset = abs(min(rightInsetMinX - relativeFrame.maxX, 0.0))
+        
+        // bottom
+        let bottomInsetMinY = viewController.view.bounds.height - allRequiredInsets.bottom
+        let bottomInset = abs(min(bottomInsetMinY - relativeFrame.maxY, 0.0))
+        
+        return UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
     }
 }
