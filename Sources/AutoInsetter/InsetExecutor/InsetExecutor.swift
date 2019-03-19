@@ -27,11 +27,16 @@ internal class InsetExecutor {
     func execute(store: InsetStore) {
         
         let hasTopContentInsetChanged: Bool
+        let previousContentInset = store.contentInset(for: view)
         
         // If content inset has changed
         if let contentInset = calculator.calculateContentInset(from: spec) {
+            
             view.contentInset = contentInset
-            hasTopContentInsetChanged = true
+            store.store(contentInset: contentInset, for: view)
+            
+            // TODO
+            hasTopContentInsetChanged = false
         } else {
             hasTopContentInsetChanged = false
         }
