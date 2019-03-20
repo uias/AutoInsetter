@@ -10,13 +10,17 @@ import UIKit
 
 class ScrollViewInsetCalculator: ViewInsetCalculator<UIScrollView> {
     
-    override func calculateContentInset(from spec: AutoInsetSpec) -> UIEdgeInsets? {
+    override func calculateContentInset(from spec: AutoInsetSpec, store: InsetStore) -> UIEdgeInsets? {
+        let previous = store.contentInset(for: view) ?? .zero
+        
         let contentInset = makeContentAndScrollIndicatorInsets(from: spec)
         guard contentInset != view.contentInset else {
             return nil
         }
+        store.store(contentInset: contentInset, for: view)
         
-        return contentInset
+        let customContentInset = applyCustomContentInset(to: contentInset, from: previous)
+        return customContentInset
     }
     
     override func calculateContentOffset(from spec: AutoInsetSpec) -> CGPoint? {
@@ -53,5 +57,26 @@ class ScrollViewInsetCalculator: ViewInsetCalculator<UIScrollView> {
         let bottomInset = abs(min(bottomInsetMinY - relativeFrame.maxY, 0.0))
         
         return UIEdgeInsets(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
+    }
+    
+    private func applyCustomContentInset(to contentInset: UIEdgeInsets, from previous: UIEdgeInsets?) -> UIEdgeInsets {
+        let previous = previous ?? .zero
+        var contentInset = contentInset
+        
+        // Take into account any custom insets
+        if view.contentInset.top != 0.0 {
+            contentInset.top += view.contentInset.top - previous.top
+        }
+        if view.contentInset.left != 0.0 {
+            contentInset.left += view.contentInset.left - previous.left
+        }
+        if view.contentInset.bottom != 0.0 {
+            contentInset.bottom += view.contentInset.bottom - previous.bottom
+        }
+        if  view.contentInset.right != 0.0 {
+            contentInset.right += view.contentInset.right - previous.right
+        }
+        
+        return contentInset
     }
 }

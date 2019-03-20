@@ -26,26 +26,15 @@ internal class InsetExecutor {
     
     func execute(store: InsetStore) {
         
-        let hasTopContentInsetChanged: Bool
-        let previousContentInset = store.contentInset(for: view)
-        
         // If content inset has changed
-        if let contentInset = calculator.calculateContentInset(from: spec) {
-            store.store(contentInset: contentInset, for: view)
-            
-            let contentInset = applyCustomContentInset(to: contentInset, from: previousContentInset)
-            
-            hasTopContentInsetChanged = contentInset.top != view.contentInset.top
+        if let contentInset = calculator.calculateContentInset(from: spec, store: store) {
             view.contentInset = contentInset
-            
-        } else {
-            hasTopContentInsetChanged = false
         }
         
         // If content offset has changed
-        if let contentOffset = calculator.calculateContentOffset(from: spec), hasTopContentInsetChanged {
-            view.contentOffset = contentOffset
-        }
+//        if let contentOffset = calculator.calculateContentOffset(from: spec), hasTopContentInsetChanged {
+//            view.contentOffset = contentOffset
+//        }
         
         // If  indicator insets have changed.
         if let scrollIndicatorInsets = calculator.calculateScrollIndicatorInsets(from: spec) {
@@ -53,26 +42,5 @@ internal class InsetExecutor {
         }
     }
     
-    //  MARK: Utility
     
-    private func applyCustomContentInset(to contentInset: UIEdgeInsets, from previous: UIEdgeInsets?) -> UIEdgeInsets {
-        let previous = previous ?? .zero
-        var contentInset = contentInset
-        
-        // Take into account any custom insets
-        if view.contentInset.top != 0.0 {
-            contentInset.top += view.contentInset.top - previous.top
-        }
-        if view.contentInset.left != 0.0 {
-            contentInset.left += view.contentInset.left - previous.left
-        }
-        if view.contentInset.bottom != 0.0 {
-            contentInset.bottom += view.contentInset.bottom - previous.bottom
-        }
-        if  view.contentInset.right != 0.0 {
-            contentInset.right += view.contentInset.right - previous.right
-        }
-        
-        return contentInset
-    }
 }
