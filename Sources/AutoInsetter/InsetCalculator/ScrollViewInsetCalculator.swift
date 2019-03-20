@@ -10,7 +10,7 @@ import UIKit
 
 class ScrollViewInsetCalculator: ViewInsetCalculator<UIScrollView> {
     
-    override func calculateContentInset(from spec: AutoInsetSpec, store: InsetStore) -> UIEdgeInsets? {
+    override func calculateContentInset(from spec: AutoInsetSpec, store: InsetStore) -> ContentInsetCalculation? {
         let previous = store.contentInset(for: view) ?? .zero
         
         let contentInset = makeContentAndScrollIndicatorInsets(from: spec)
@@ -20,7 +20,9 @@ class ScrollViewInsetCalculator: ViewInsetCalculator<UIScrollView> {
         store.store(contentInset: contentInset, for: view)
         
         let customContentInset = applyCustomContentInset(to: contentInset, from: previous)
-        return customContentInset
+        return ContentInsetCalculation(new: customContentInset,
+                                       previous: previous,
+                                       currentActual: view.contentInset)
     }
     
     override func calculateContentOffset(from spec: AutoInsetSpec) -> CGPoint? {

@@ -26,6 +26,7 @@
 		4699614F200EA4B700C1D9CD /* AutoInsetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46996149200EA4B700C1D9CD /* AutoInsetSpec.swift */; };
 		46D80FC9224172CE003A359D /* InsetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D80FC8224172CE003A359D /* InsetStore.swift */; };
 		46D80FCB22417318003A359D /* DefaultInsetStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D80FCA22417318003A359D /* DefaultInsetStore.swift */; };
+		46D80FCD224228A9003A359D /* InsetCalculations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D80FCC224228A9003A359D /* InsetCalculations.swift */; };
 		46F4BE88216FC43A002616F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46F4BE87216FC43A002616F0 /* AppDelegate.swift */; };
 		46F4BE8F216FC43B002616F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46F4BE8E216FC43B002616F0 /* Assets.xcassets */; };
 		46F4BE92216FC43B002616F0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46F4BE90216FC43B002616F0 /* LaunchScreen.storyboard */; };
@@ -101,6 +102,7 @@
 		46996152200EA4C200C1D9CD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		46D80FC8224172CE003A359D /* InsetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetStore.swift; sourceTree = "<group>"; };
 		46D80FCA22417318003A359D /* DefaultInsetStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultInsetStore.swift; sourceTree = "<group>"; };
+		46D80FCC224228A9003A359D /* InsetCalculations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetCalculations.swift; sourceTree = "<group>"; };
 		46F4BE85216FC439002616F0 /* AutoInsetterPlayground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoInsetterPlayground.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		46F4BE87216FC43A002616F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46F4BE8E216FC43B002616F0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				460463CB223D0A8D00E19258 /* InsetCalculator.swift */,
+				46D80FCC224228A9003A359D /* InsetCalculations.swift */,
 				460463CD223D0BA600E19258 /* ScrollViewInsetCalculator.swift */,
 				460463CF223D0D3300E19258 /* TableViewInsetCalculator.swift */,
 			);
@@ -518,6 +521,7 @@
 				4699614F200EA4B700C1D9CD /* AutoInsetSpec.swift in Sources */,
 				4699614A200EA4B700C1D9CD /* AutoInsetter.swift in Sources */,
 				460463CC223D0A8D00E19258 /* InsetCalculator.swift in Sources */,
+				46D80FCD224228A9003A359D /* InsetCalculations.swift in Sources */,
 				4699614C200EA4B700C1D9CD /* UIViewController+ScrollViewDetection.swift in Sources */,
 				460463CE223D0BA600E19258 /* ScrollViewInsetCalculator.swift in Sources */,
 			);

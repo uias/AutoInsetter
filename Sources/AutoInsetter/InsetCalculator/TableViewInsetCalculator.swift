@@ -10,7 +10,7 @@ import UIKit
 
 class TableViewInsetCalculator: ViewInsetCalculator<UITableView> {
     
-    override func calculateContentInset(from spec: AutoInsetSpec, store: InsetStore) -> UIEdgeInsets? {
+    override func calculateContentInset(from spec: AutoInsetSpec, store: InsetStore) -> ContentInsetCalculation? {
         return nil
     }
     
