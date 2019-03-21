@@ -30,11 +30,8 @@ internal class InsetExecutor {
         if let contentInset = calculator.calculateContentInset(from: spec, store: store) {
             view.contentInset = contentInset.new
             
-            // Top Inset has changed
-            let requiresContentOffsetUpdate = contentInset.currentActual.top != contentInset.new.top
-            
             // If content offset has changed
-            if let contentOffset = calculator.calculateContentOffset(from: spec), requiresContentOffsetUpdate {
+            if let contentOffset = calculator.calculateContentOffset(from: contentInset, store: store) {
                 view.contentOffset = contentOffset
             }
         }

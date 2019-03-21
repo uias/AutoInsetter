@@ -14,7 +14,7 @@ class TableViewInsetCalculator: ViewInsetCalculator<UITableView> {
         return nil
     }
     
-    override func calculateContentOffset(from spec: AutoInsetSpec) -> CGPoint? {
+    override func calculateContentOffset(from insetCalculation: ContentInsetCalculation, store: InsetStore) -> CGPoint? {
         return nil
     }
     

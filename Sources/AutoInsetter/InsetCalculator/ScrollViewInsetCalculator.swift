@@ -25,8 +25,27 @@ class ScrollViewInsetCalculator: ViewInsetCalculator<UIScrollView> {
                                        currentActual: view.contentInset)
     }
     
-    override func calculateContentOffset(from spec: AutoInsetSpec) -> CGPoint? {
-        return nil
+    override func calculateContentOffset(from insetCalculation: ContentInsetCalculation, store: InsetStore) -> CGPoint? {
+        guard insetCalculation.currentActual.top != insetCalculation.new.top else {
+            return nil
+        }
+        let topInsetDelta = insetCalculation.new.top - insetCalculation.currentActual.top
+        
+        var contentOffset = store.contentOffset(for: view) ?? .zero
+        
+        var userOffsetDelta = view.contentOffset.y - contentOffset.y
+        if userOffsetDelta > 0 {
+            userOffsetDelta += contentOffset.y + insetCalculation.new.top
+        }
+        
+        contentOffset.y -= topInsetDelta
+        store.store(contentOffset: contentOffset, for: view)
+        
+        if userOffsetDelta > 0 {
+            contentOffset.y += userOffsetDelta
+        }
+        
+        return contentOffset
     }
     
     override func calculateScrollIndicatorInsets(from spec: AutoInsetSpec) -> UIEdgeInsets? {
