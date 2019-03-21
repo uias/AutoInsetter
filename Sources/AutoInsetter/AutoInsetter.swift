@@ -76,41 +76,6 @@ public final class AutoInsetter {
             let executor = InsetExecutor(view: scrollView, calculator: calculator, spec: requiredInsetSpec)
             
             executor.execute(store: insetStore)
-//            let requiredContentInset = calculateActualRequiredContentInset(for: scrollView,
-//                                                                           from: requiredInsetSpec,
-//                                                                           in: viewController)
-//            print("requiredContentInset \(requiredContentInset)")
-//
-//            // dont update if we dont need to
-//            if scrollView.contentInset != requiredContentInset {
-//
-//                let isTopInsetChanged = requiredContentInset.top != scrollView.contentInset.top
-//                let topInsetDelta = requiredContentInset.top - scrollView.contentInset.top
-//
-//                scrollView.contentInset = requiredContentInset
-//                scrollView.scrollIndicatorInsets = requiredContentInset
-//
-//                // only update contentOffset if the top contentInset has updated.
-//                if isTopInsetChanged {
-//                    var contentOffset = self.currentContentOffsets[scrollView] ?? .zero
-//
-//                    // Calculate the user 'delta' - the amount that the user has scrolled
-//                    // the scroll view before insetting.
-//                    var userDelta = scrollView.contentOffset.y - contentOffset.y
-//                    if userDelta > 0 { // If offset delta exists compare to insets to ensure it is user.
-//                        userDelta += contentOffset.y + scrollView.contentInset.top
-//                    }
-//
-//                    contentOffset.y -= topInsetDelta
-//                    self.currentContentOffsets[scrollView] = contentOffset
-//
-//                    if userDelta > 0 { // apply user delta
-//                        contentOffset.y += userDelta
-//                    }
-//
-//                    scrollView.contentOffset = contentOffset
-//                }
-//            }
         }
     }
 }
@@ -128,58 +93,6 @@ extension AutoInsetter {
 
 // MARK: - Utilities
 private extension AutoInsetter {
-    
-    /// Calculate the actual inset values to use for a scroll view.
-    ///
-    /// - Parameters:
-    ///   - scrollView: Scroll view.
-    ///   - requiredInsets: Required TabmanBar insets.
-    ///   - viewController: The view controller that contains the scroll view.
-    /// - Returns: Actual contentInset values to use.
-    func calculateActualRequiredContentInset(for scrollView: UIScrollView,
-                                             from requiredInsetSpec: AutoInsetSpec,
-                                             in viewController: UIViewController) -> UIEdgeInsets {
-        viewController.view.layoutIfNeeded()
-        
-        let requiredContentInset = requiredInsetSpec.allRequiredInsets
-        let previousContentInset = currentContentInsets[scrollView] ?? .zero
-        
-        // Calculate top / bottom insets relative to view position in child vc.
-        var proposedContentInset: UIEdgeInsets
-        
-        if isEmbeddedViewController(viewController) { // Embedded VC is always full canvas
-            proposedContentInset = requiredContentInset
-            
-        } else { // Standard View controller
-            
-            let relativeFrame = viewController.view.convert(scrollView.frame, from: scrollView.superview)
-            let relativeTopInset = max(requiredContentInset.top - relativeFrame.minY, 0.0)
-            let bottomInsetMinY = viewController.view.bounds.height - requiredContentInset.bottom
-            let relativeBottomInset = abs(min(bottomInsetMinY - relativeFrame.maxY, 0.0))
-            let originalContentInset = scrollView.contentInset
-            
-            proposedContentInset = UIEdgeInsets(top: relativeTopInset,
-                                                left: originalContentInset.left,
-                                                bottom: relativeBottomInset,
-                                                right: originalContentInset.right)
-        }
-        
-        currentContentInsets[scrollView] = proposedContentInset
-                
-        var actualRequiredContentInset = proposedContentInset
-        
-        // Take into account any custom insets for top / bottom
-        if scrollView.contentInset.top != 0.0 {
-            let customTopInset = scrollView.contentInset.top - previousContentInset.top
-            actualRequiredContentInset.top += customTopInset
-        }
-        if scrollView.contentInset.bottom != 0.0 {
-            let customBottomInset = scrollView.contentInset.bottom - previousContentInset.bottom
-            actualRequiredContentInset.bottom += customBottomInset
-        }
-        
-        return actualRequiredContentInset
-    }
     
     /// Check whether a view controller is an 'embedded' view controller type (i.e. UITableViewController)
     ///
