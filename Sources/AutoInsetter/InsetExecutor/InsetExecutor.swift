@@ -29,18 +29,18 @@ internal class InsetExecutor {
         // If content inset has changed
         if let contentInset = calculator.calculateContentInset(from: spec, store: store) {
             view.contentInset = contentInset.new
-            
+            print("Updated contentInset: \(view.contentInset)")
+
             // If content offset has changed
             if let contentOffset = calculator.calculateContentOffset(from: contentInset, store: store) {
                 view.contentOffset = contentOffset
+                print("Updated contentOffset: \(view.contentOffset)")
             }
         }
         
-        // If  indicator insets have changed.
+        // If indicator insets have changed.
         if let scrollIndicatorInsets = calculator.calculateScrollIndicatorInsets(from: spec) {
             view.scrollIndicatorInsets = scrollIndicatorInsets
         }
     }
-    
-    
 }
