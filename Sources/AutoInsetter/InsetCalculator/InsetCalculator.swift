@@ -43,4 +43,27 @@ internal class ViewInsetCalculator<InsetView: UIScrollView>: InsetCalculator {
         assert(false, "Override in subclass")
         return nil
     }
+    
+    // MARK: Utility
+    
+    func applyCustomContentInset(to contentInset: UIEdgeInsets, from previous: UIEdgeInsets?) -> UIEdgeInsets {
+        let previous = previous ?? .zero
+        var contentInset = contentInset
+        
+        // Take into account any custom insets
+        if view.contentInset.top != 0.0 {
+            contentInset.top += view.contentInset.top - previous.top
+        }
+        if view.contentInset.left != 0.0 {
+            contentInset.left += view.contentInset.left - previous.left
+        }
+        if view.contentInset.bottom != 0.0 {
+            contentInset.bottom += view.contentInset.bottom - previous.bottom
+        }
+        if  view.contentInset.right != 0.0 {
+            contentInset.right += view.contentInset.right - previous.right
+        }
+        
+        return contentInset
+    }
 }
