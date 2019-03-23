@@ -14,6 +14,17 @@ class TableViewInsetCalculator: ViewInsetCalculator<UITableView> {
         let previous = store.contentInset(for: view) ?? .zero
         let allRequiredInsets = spec.allRequiredInsets
         
+        // If UITableViewController then just return all insets (exc. horizontal)
+        guard isScrollViewController == false else {
+            let contentInset = UIEdgeInsets(top: allRequiredInsets.top,
+                                            left: 0.0,
+                                            bottom: allRequiredInsets.bottom,
+                                            right: 0.0)
+            return ContentInsetCalculation(new: contentInset,
+                                           previous: previous,
+                                           currentActual: view.contentInset)
+        }
+        
         let relativeFrame = viewController.view.convert(view.frame, from: view.superview)
         
         // top
@@ -68,6 +79,9 @@ class TableViewInsetCalculator: ViewInsetCalculator<UITableView> {
     
     override func calculateScrollIndicatorInsets(from spec: AutoInsetSpec) -> UIEdgeInsets? {
         let allRequiredInsets = spec.allRequiredInsets
+        guard isScrollViewController == false else {
+            return allRequiredInsets
+        }
         
         let relativeFrame = viewController.view.convert(view.frame, from: view.superview)
         

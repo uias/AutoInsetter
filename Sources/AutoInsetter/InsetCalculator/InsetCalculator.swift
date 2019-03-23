@@ -66,4 +66,9 @@ internal class ViewInsetCalculator<InsetView: UIScrollView>: InsetCalculator {
         
         return contentInset
     }
+    
+    /// Whether the view controller is a 'Scroll View UIViewController' - a.k.a a `UITableViewController` et al.
+    var isScrollViewController: Bool {
+        return (viewController is UITableViewController) || (viewController is UICollectionViewController)
+    }
 }
