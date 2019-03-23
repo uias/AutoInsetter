@@ -19,7 +19,7 @@ public final class AutoInsetter {
     private let insetStore: InsetStore = DefaultInsetStore()
     
     /// Whether auto-insetting is enabled.
-    @available(*, deprecated: 1.5.0, message: "Use enable(for:)")
+    @available(*, deprecated, message: "Use enable(for:)")
     public var isEnabled: Bool {
         set {
             if newValue {
