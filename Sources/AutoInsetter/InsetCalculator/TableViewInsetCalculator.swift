@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewInsetCalculator: ViewInsetCalculator<UITableView> {
+internal class TableViewInsetCalculator: ViewInsetCalculator<UITableView> {
     
     override func calculateContentInset(from spec: AutoInsetSpec, store: InsetStore) -> ContentInsetCalculation? {
         let previous = store.contentInset(for: view) ?? .zero

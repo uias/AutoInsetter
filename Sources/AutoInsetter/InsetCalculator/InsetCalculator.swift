@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol InsetCalculator: class {
+internal protocol InsetCalculator: class {
     
     func calculateContentInset(from spec: AutoInsetSpec, store: InsetStore) -> ContentInsetCalculation?
 

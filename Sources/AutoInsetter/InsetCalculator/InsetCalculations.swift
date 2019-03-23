@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct ContentInsetCalculation {
+internal struct ContentInsetCalculation {
     /// The new Content Inset
     let new: UIEdgeInsets
     /// The previously calculated Content Inset

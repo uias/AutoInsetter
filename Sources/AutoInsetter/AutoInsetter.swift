@@ -86,6 +86,8 @@ extension AutoInsetter {
         
         if let tableView = scrollView as? UITableView {
             return TableViewInsetCalculator(view: tableView, viewController: viewController)
+        } else if let collectionView = scrollView as? UICollectionView {
+            return CollectionViewInsetCalculator(view: collectionView, viewController: viewController)
         }
         return ScrollViewInsetCalculator(view: scrollView, viewController: viewController)
     }

@@ -18,6 +18,7 @@
 		461197182221C43C0033FE04 /* AutoInsetter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 460911A7200E5291008DC38E /* AutoInsetter.framework */; };
 		461197192221C4840033FE04 /* Pageboy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F4BEAA216FC4DC002616F0 /* Pageboy.framework */; };
 		4611971A2221C4840033FE04 /* Tabman.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 46F4BEAB216FC4DC002616F0 /* Tabman.framework */; };
+		462AB98722462D120041DE3A /* CollectionViewInsetCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462AB98622462D120041DE3A /* CollectionViewInsetCalculator.swift */; };
 		464CFD8820111C5000D7DEDA /* EmbeddedScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464CFD8720111C5000D7DEDA /* EmbeddedScrollViewTests.swift */; };
 		4699614A200EA4B700C1D9CD /* AutoInsetter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46996143200EA4B700C1D9CD /* AutoInsetter.swift */; };
 		4699614C200EA4B700C1D9CD /* UIViewController+ScrollViewDetection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46996146200EA4B700C1D9CD /* UIViewController+ScrollViewDetection.swift */; };
@@ -91,6 +92,7 @@
 		460463D1223D0DB000E19258 /* InsetExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetExecutor.swift; sourceTree = "<group>"; };
 		460911A7200E5291008DC38E /* AutoInsetter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AutoInsetter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		460911B0200E5291008DC38E /* AutoInsetterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoInsetterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		462AB98622462D120041DE3A /* CollectionViewInsetCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewInsetCalculator.swift; sourceTree = "<group>"; };
 		464CFD8720111C5000D7DEDA /* EmbeddedScrollViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmbeddedScrollViewTests.swift; sourceTree = "<group>"; };
 		46996143200EA4B700C1D9CD /* AutoInsetter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoInsetter.swift; sourceTree = "<group>"; };
 		46996146200EA4B700C1D9CD /* UIViewController+ScrollViewDetection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+ScrollViewDetection.swift"; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				46D80FCC224228A9003A359D /* InsetCalculations.swift */,
 				460463CD223D0BA600E19258 /* ScrollViewInsetCalculator.swift */,
 				460463CF223D0D3300E19258 /* TableViewInsetCalculator.swift */,
+				462AB98622462D120041DE3A /* CollectionViewInsetCalculator.swift */,
 			);
 			path = InsetCalculator;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				46D80FC9224172CE003A359D /* InsetStore.swift in Sources */,
 				460463D0223D0D3300E19258 /* TableViewInsetCalculator.swift in Sources */,
 				4699614F200EA4B700C1D9CD /* AutoInsetSpec.swift in Sources */,
+				462AB98722462D120041DE3A /* CollectionViewInsetCalculator.swift in Sources */,
 				4699614A200EA4B700C1D9CD /* AutoInsetter.swift in Sources */,
 				460463CC223D0A8D00E19258 /* InsetCalculator.swift in Sources */,
 				46D80FCD224228A9003A359D /* InsetCalculations.swift in Sources */,
