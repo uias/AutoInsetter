@@ -40,20 +40,27 @@ class TableViewInsetCalculator: ViewInsetCalculator<UITableView> {
         guard insetCalculation.currentActual.top != insetCalculation.new.top else {
             return nil
         }
+        
+        // Calculate the delta between the new content inset top and actual current content inset top
+        // This provides the amount that we potentially have to update the content offset by.
         let topInsetDelta = insetCalculation.new.top - insetCalculation.currentActual.top
         
+        // Get the previously stored content offset
         var contentOffset = store.contentOffset(for: view) ?? .zero
-        
-        var userOffsetDelta = view.contentOffset.y - contentOffset.y
-        if userOffsetDelta > 0 {
-            userOffsetDelta += contentOffset.y + insetCalculation.new.top
+
+        // Calculate the delta between the views current content offset and previously stored offset.
+        var contentOffsetYDelta = view.contentOffset.y - contentOffset.y
+        if contentOffsetYDelta > 0 { // if the scroll offset is positive (scrolled down)
+            contentOffsetYDelta += contentOffset.y + insetCalculation.new.top // add the current offset and new top inset.
         }
+        contentOffset.y -= topInsetDelta // adjust for the top inset delta
         
-        contentOffset.y -= topInsetDelta
+        // store the new offset (which has no user applied values yet)
         store.store(contentOffset: contentOffset, for: view)
         
-        if userOffsetDelta > 0 {
-            contentOffset.y += userOffsetDelta
+        // Apply the user applied content offset if required
+        if contentOffsetYDelta > 0 && floor(contentOffsetYDelta) != topInsetDelta {
+            contentOffset.y += contentOffsetYDelta
         }
         
         return contentOffset
