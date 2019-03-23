@@ -112,6 +112,6 @@ class TableViewInsetCalculator: ViewInsetCalculator<UITableView> {
         guard view.scrollIndicatorInsets != scrollIndicatorInsets else {
             return nil
         }
-        return view.scrollIndicatorInsets
+        return scrollIndicatorInsets
     }
 }
