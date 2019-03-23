@@ -12,6 +12,6 @@ internal extension UIScrollView {
     
     /// Whether the scroll view is currently experiencing interaction of any kind.
     var isBeingInteracted: Bool {
-        return isDragging || isDecelerating || isTracking || isZooming
+        return isDragging || isTracking || isZooming
     }
 }
