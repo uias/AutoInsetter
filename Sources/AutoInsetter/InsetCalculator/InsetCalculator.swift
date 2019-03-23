@@ -12,7 +12,7 @@ internal protocol InsetCalculator: class {
     
     func calculateContentInset(from spec: AutoInsetSpec, store: InsetStore) -> ContentInsetCalculation?
 
-    func calculateContentOffset(from insetCalculation: ContentInsetCalculation, store: InsetStore) -> CGPoint?
+    func calculateContentOffset(from insetCalculation: ContentInsetCalculation, store: InsetStore) -> ContentOffsetCalculation?
     
     func calculateScrollIndicatorInsets(from spec: AutoInsetSpec) -> UIEdgeInsets?
 }
@@ -34,7 +34,7 @@ internal class ViewInsetCalculator<InsetView: UIScrollView>: InsetCalculator {
         return nil
     }
     
-    func calculateContentOffset(from insetCalculation: ContentInsetCalculation, store: InsetStore) -> CGPoint? {
+    func calculateContentOffset(from insetCalculation: ContentInsetCalculation, store: InsetStore) -> ContentOffsetCalculation? {
         assert(false, "Override in subclass")
         return nil
     }

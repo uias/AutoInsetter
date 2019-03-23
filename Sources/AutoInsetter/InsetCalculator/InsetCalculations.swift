@@ -16,3 +16,9 @@ internal struct ContentInsetCalculation {
     /// The current actual Content Inset of the view.
     let currentActual: UIEdgeInsets
 }
+
+internal struct ContentOffsetCalculation {
+    let new: CGPoint
+    let previous: CGPoint?
+    let currentActual: CGPoint
+}

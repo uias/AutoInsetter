@@ -54,7 +54,7 @@ internal class CollectionViewInsetCalculator: ViewInsetCalculator<UICollectionVi
                                        currentActual: view.contentInset)
     }
     
-    override func calculateContentOffset(from insetCalculation: ContentInsetCalculation, store: InsetStore) -> CGPoint? {
+    override func calculateContentOffset(from insetCalculation: ContentInsetCalculation, store: InsetStore) -> ContentOffsetCalculation? {
         guard insetCalculation.currentActual.top != insetCalculation.new.top else {
             return nil
         }
@@ -64,7 +64,8 @@ internal class CollectionViewInsetCalculator: ViewInsetCalculator<UICollectionVi
         let topInsetDelta = insetCalculation.new.top - insetCalculation.currentActual.top
         
         // Get the previously stored content offset
-        var contentOffset = store.contentOffset(for: view) ?? .zero
+        let previous = store.contentOffset(for: view)
+        var contentOffset = previous ?? .zero
         
         // Calculate the delta between the views current content offset and previously stored offset.
         var contentOffsetYDelta = view.contentOffset.y - contentOffset.y
@@ -81,7 +82,9 @@ internal class CollectionViewInsetCalculator: ViewInsetCalculator<UICollectionVi
             contentOffset.y += contentOffsetYDelta
         }
         
-        return contentOffset
+        return ContentOffsetCalculation(new: contentOffset,
+                                        previous: previous,
+                                        currentActual: view.contentOffset)
     }
     
     override func calculateScrollIndicatorInsets(from spec: AutoInsetSpec) -> UIEdgeInsets? {

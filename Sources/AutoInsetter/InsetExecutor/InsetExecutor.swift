@@ -33,7 +33,7 @@ internal class InsetExecutor {
 
             // If content offset has changed
             if let contentOffset = calculator.calculateContentOffset(from: contentInset, store: store) {
-                view.contentOffset = contentOffset
+                view.contentOffset = contentOffset.new
                 print("Updated contentOffset: \(view.contentOffset)")
             }
         }
