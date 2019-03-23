@@ -29,12 +29,13 @@ internal class InsetExecutor {
         // If content inset has changed
         if let contentInset = calculator.calculateContentInset(from: spec, store: store) {
             view.contentInset = contentInset.new
-            print("Updated contentInset: \(view.contentInset)")
+            invalidateLayoutIfNeeded()
+            print("[AutoInsetter] - Updated contentInset: \(view.contentInset)")
 
             // If content offset has changed
             if let contentOffset = calculator.calculateContentOffset(from: contentInset, store: store) {
                 view.contentOffset = contentOffset.new
-                print("Updated contentOffset: \(view.contentOffset)")
+                print("[AutoInsetter] - Updated contentOffset: \(view.contentOffset)")
             }
         }
         
@@ -42,5 +43,9 @@ internal class InsetExecutor {
         if let scrollIndicatorInsets = calculator.calculateScrollIndicatorInsets(from: spec) {
             view.scrollIndicatorInsets = scrollIndicatorInsets
         }
+    }
+    
+    private func invalidateLayoutIfNeeded() {
+        (view as? UICollectionView)?.collectionViewLayout.invalidateLayout()
     }
 }
