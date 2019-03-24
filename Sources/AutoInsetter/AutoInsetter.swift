@@ -76,6 +76,8 @@ public final class AutoInsetter {
             let executor = InsetExecutor(view: scrollView, calculator: calculator, spec: requiredInsetSpec)
             
             executor.execute(store: insetStore)
+            
+            viewController.view.setNeedsLayout()
         }
     }
 }
