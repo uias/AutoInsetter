@@ -23,7 +23,7 @@
 
 ## 💡 About
 
-AutoInsetter is an integral part of both **[Tabman](https://github.com/uias/Tabman)** and **[Compressor](https://github.com/uias/Compressor)** and is used to provide custom view controller auto-insetting behaviour.
+AutoInsetter is an integral part of both **[Tabman](https://github.com/uias/Tabman)** and is used to provide custom view controller auto-insetting behaviour.
 
 ## ⚠️ Issues
 
