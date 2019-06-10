@@ -3,8 +3,10 @@ Pod::Spec.new do |s|
   s.name         = "AutoInsetter"
   s.platform     = :ios, "9.0"
   s.requires_arc = true
-  s.swift_version = "4.0"
 
+  s.swift_version = "4.0"
+  s.swift_versions = ['4.0', '4.1', '4.2', '5.0']
+  
   s.version      = "1.7.1"
   s.summary      = "Provide auto insetting capabilities to view controllers."
   s.description  = <<-DESC
