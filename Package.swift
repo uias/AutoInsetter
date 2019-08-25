@@ -24,6 +24,5 @@ let package = Package(
         .testTarget(
             name: "AutoInsetterUITests",
             dependencies: ["AutoInsetter"])
-        )
     ]
 )
