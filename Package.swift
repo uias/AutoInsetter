@@ -20,10 +20,10 @@ let package = Package(
             name: "AutoInsetter"),
         .testTarget(
             name: "AutoInsetterTests",
-            dependencies: ["AutoInsetter"]
+            dependencies: ["AutoInsetter"]),
         .testTarget(
             name: "AutoInsetterUITests",
-            dependencies: ["AutoInsetter"]
+            dependencies: ["AutoInsetter"])
         )
     ]
 )
