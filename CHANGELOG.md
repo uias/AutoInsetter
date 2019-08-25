@@ -3,6 +3,7 @@ All notable changes to this project will be documented in this file.
 `AutoInsetter` adheres to [Semantic Versioning](http://semver.org/).
 
 #### 1.x Releases
+- `1.8.x` Releases - [1.8.0](#180)
 - `1.7.x` Releases - [1.7.0](#170) | [1.7.1](#171) | [1.7.2](#172)
 - `1.6.x` Releases - [1.6.0](#160)
 - `1.5.x` Releases - [1.5.0](#150) | [1.5.1](#151)
@@ -11,6 +12,13 @@ All notable changes to this project will be documented in this file.
 - `1.2.x` Releases - [1.2.0](#120) | [1.2.1](#121) | [1.2.2](#122) | [1.2.3](#123) | [1.2.4](#124) | [1.2.5](#125) | [1.2.6](#126)
 - `1.1.x` Releases - [1.1.0](#110)
 - `1.0.x` Releases - [1.0.0](#100)
+
+---
+## [1.8.0](https://github.com/uias/AutoInsetter/releases/tag/1.8.0)
+Released on 2019-08-25
+
+#### Updated
+- Add support for Swift Package Manager in Xcode 11.
 
 ---
 ## [1.7.2](https://github.com/uias/AutoInsetter/releases/tag/1.7.2)
