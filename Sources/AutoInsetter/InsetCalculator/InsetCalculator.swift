@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(*, deprecated)
 internal protocol InsetCalculator: class {
     
     func calculateContentInset(from spec: AutoInsetSpec, store: InsetStore) -> ContentInsetCalculation?
@@ -17,6 +18,7 @@ internal protocol InsetCalculator: class {
     func calculateScrollIndicatorInsets(from spec: AutoInsetSpec) -> UIEdgeInsets?
 }
 
+@available(*, deprecated)
 internal class ViewInsetCalculator<InsetView: UIScrollView>: InsetCalculator {
     
     let view: InsetView

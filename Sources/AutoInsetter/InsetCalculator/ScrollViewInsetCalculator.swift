@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(*, deprecated)
 internal class ScrollViewInsetCalculator: ViewInsetCalculator<UIScrollView> {
     
     override func calculateContentInset(from spec: AutoInsetSpec, store: InsetStore) -> ContentInsetCalculation? {

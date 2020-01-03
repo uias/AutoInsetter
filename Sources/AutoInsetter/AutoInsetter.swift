@@ -9,6 +9,7 @@
 import UIKit
 
 /// Engine that provides Auto Insetting to UIViewControllers.
+@available(*, deprecated)
 public final class AutoInsetter {
     
     // MARK: Properties
@@ -82,6 +83,7 @@ public final class AutoInsetter {
     }
 }
 
+@available(*, deprecated)
 extension AutoInsetter {
     
     private func makeInsetCalculator(for scrollView: UIScrollView, viewController: UIViewController) -> InsetCalculator {
@@ -96,6 +98,7 @@ extension AutoInsetter {
 }
 
 // MARK: - Utilities
+@available(*, deprecated)
 private extension AutoInsetter {
     
     /// Check whether a view controller is an 'embedded' view controller type (i.e. UITableViewController)

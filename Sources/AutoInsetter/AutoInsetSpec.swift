@@ -9,6 +9,7 @@
 import UIKit
 
 /// Specification for Auto Insetting values.
+@available(*, deprecated)
 public protocol AutoInsetSpec {
     
     /// The insets that are required IN addition to UIKit components / safe area.

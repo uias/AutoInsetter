@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(*, deprecated)
 internal class InsetExecutor {
     
     let view: UIScrollView

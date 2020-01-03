@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(*, deprecated)
 internal class CollectionViewInsetCalculator: ViewInsetCalculator<UICollectionView> {
     
     override func calculateContentInset(from spec: AutoInsetSpec, store: InsetStore) -> ContentInsetCalculation? {

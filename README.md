@@ -21,6 +21,6 @@
     </a>
 </p>
 
-## 💡 About
+## ⛔️ Deprecated
 
-AutoInsetter is an integral part of **[Tabman](https://github.com/uias/Tabman)** and is used to provide custom view controller auto-insetting behaviour.
+AutoInsetter is now deprecated and has been added to be part of **[Tabman](https://github.com/uias/Tabman)**.
